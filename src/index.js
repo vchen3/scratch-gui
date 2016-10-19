@@ -1,5 +1,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const VM = require('scratch-vm');
+
+const Blocks = require('./containers/blocks');
 const GUI = require('./containers/gui');
 const log = require('./lib/log');
 const ProjectLoader = require('./lib/project-loader');
@@ -45,13 +48,33 @@ class App extends React.Component {
             <GUI
                 basePath={this.props.basePath}
                 projectData={this.state.projectData}
-            />
+                vm={this.props.vm}
+            >
+                <Blocks
+                    options={{
+                        media: this.props.basePath + 'static/blocks-media/'
+                    }}
+                    vm={this.props.vm}
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0
+                    }}
+                />
+            </GUI>
         );
     }
 }
 
 App.propTypes = {
-    basePath: React.PropTypes.string
+    basePath: React.PropTypes.string,
+    vm: React.PropTypes.instanceOf(VM)
+};
+
+App.defaultProps = {
+    vm: new VM()
 };
 
 const appTarget = document.createElement('div');
