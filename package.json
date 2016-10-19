@@ -47,7 +47,7 @@
     "react-dom": "15.x.x",
     "scratch-blocks": "latest",
     "scratch-render": "latest",
-    "scratch-vm": "latest",
+    "scratch-vm": "ericrosenbaum/scratch-vm#sound",
     "travis-after-all": "jamesarosen/travis-after-all#override-api-urls",
     "webpack": "1.13.2",
     "webpack-dev-server": "1.15.2",
