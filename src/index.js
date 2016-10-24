@@ -55,6 +55,7 @@ class App extends React.Component {
                 style={{ display: 'none' }}
                 ref={tb => this.toolbox = tb}
             >
+            <category is name="Sound" colour="#D65CD6" secondaryColour="#BD42BD">
                 <block type="sound_play">
                       <value name="SOUND_MENU">
                         <shadow type="sound_sounds_option"></shadow>
@@ -88,7 +89,7 @@ class App extends React.Component {
                     <block type="sound_playnoteforbeats">
                       <value name="NOTE">
                         <shadow type="math_number">
-                          <field name="NUM">1</field>
+                          <field name="NUM">60</field>
                         </shadow>
                       </value>
                       <value name="BEATS">
@@ -104,13 +105,25 @@ class App extends React.Component {
                         </shadow>
                       </value>
                     </block>
+                    <block type="sound_playthereminforbeats">
+                      <value name="NOTE">
+                        <shadow type="math_number">
+                          <field name="NUM">60</field>
+                        </shadow>
+                      </value>
+                      <value name="BEATS">
+                        <shadow type="math_number">
+                          <field name="NUM">0.5</field>
+                        </shadow>
+                      </value>
+                    </block>
                      <block type="sound_seteffectto">
                        <value name="EFFECT">
                          <shadow type="sound_effects_menu"></shadow>
                        </value>
                        <value name="VALUE">
                         <shadow type="math_number">
-                          <field name="NUM">10</field>
+                          <field name="NUM">100</field>
                         </shadow>
                        </value>
                      </block>
@@ -155,63 +168,9 @@ class App extends React.Component {
                       </value>
                     </block>
                     <block type="sound_tempo"></block>
+                </category>
 
-                    <block type="data_listcontents"></block>
-                    <block type="data_addtolist">
-                      <value name="ITEM">
-                        <shadow type="text">
-                          <field name="TEXT">thing</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_deleteoflist">
-                      <value name="INDEX">
-                        <shadow type="data_listindexall">
-                          <field name="INDEX">1</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_insertatlist">
-                      <value name="INDEX">
-                        <shadow type="data_listindexrandom">
-                          <field name="INDEX">1</field>
-                        </shadow>
-                      </value>
-                      <value name="ITEM">
-                        <shadow type="text">
-                          <field name="TEXT">thing</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_replaceitemoflist">
-                      <value name="INDEX">
-                        <shadow type="data_listindexrandom">
-                          <field name="INDEX">1</field>
-                        </shadow>
-                      </value>
-                      <value name="ITEM">
-                        <shadow type="text">
-                          <field name="TEXT">thing</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_itemoflist">
-                      <value name="INDEX">
-                        <shadow type="data_listindexrandom">
-                          <field name="INDEX">1</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_lengthoflist"></block>
-                    <block type="data_listcontainsitem">
-                      <value name="ITEM">
-                        <shadow type="text">
-                          <field name="TEXT">thing</field>
-                        </shadow>
-                      </value>
-                    </block>
-                    <block type="data_showlist"></block>
-                    <block type="data_hidelist"></block>
+                <category is name="Events" colour="#FFD500" secondaryColour="#CC9900">
 
                     <block type="event_whenflagclicked"></block>
                     <block type="event_whenkeypressed">
@@ -237,7 +196,9 @@ class App extends React.Component {
                     <block type="control_wait_until"></block>
                     <block type="control_repeat_until"></block>
                     <block type="control_stop"></block>
+                </category>
 
+                <category is name="Sensing" colour="#4CBFE6" secondaryColour="#2E8EB8">
                   <block type="sensing_keypressed">
                       <value name="KEY_OPTION">
                         <shadow type="sensing_keyoptions"></shadow>
@@ -249,7 +210,9 @@ class App extends React.Component {
                   <block type="sensing_timer"></block>
                   <block type="sensing_resettimer"></block>
                   <block type="sensing_dayssince2000"></block>
+              </category>
 
+            <category is name="Operators" colour="#40BF4A" secondaryColour="#389438">
                     <block type="operator_add">
                       <value name="NUM1">
                         <shadow type="math_number">
@@ -409,6 +372,7 @@ class App extends React.Component {
                         </shadow>
                       </value>
                     </block>
+                </category>
                 </xml>
                 {this.state.toolbox ?
                     <Blocks
