@@ -11,7 +11,7 @@ const ProjectLoader = require('./lib/project-loader');
 class App extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, ['onMouseMove', 'onMouseUp', 'onMouseDown']);
+        bindAll(this, ['onMouseMove']);
         this.fetchProjectId = this.fetchProjectId.bind(this);
         this.updateProject = this.updateProject.bind(this);
         this.state = {
@@ -23,8 +23,6 @@ class App extends React.Component {
         this.hashChangeListener = () => this.updateProject();
         window.addEventListener('hashchange', this.hashChangeListener);
         window.addEventListener('mousemove', this.onMouseMove);
-        window.addEventListener('mouseup', this.onMouseUp);
-        window.addEventListener('mousedown', this.onMouseDown);
         // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({toolbox: this.toolbox});
         this.updateProject(this.props.initialProjectId);
@@ -32,8 +30,6 @@ class App extends React.Component {
     componentWillUnmount () {
         window.removeEventListener('hashchange', this.hashChangeListener);
         window.removeEventListener('mousemove', this.onMouseMove);
-        window.removeEventListener('mouseup', this.onMouseUp);
-        window.removeEventListener('mousedown', this.onMouseDown);
     }
     onMouseMove (e) {
         const rect = document.body.getBoundingClientRect();
@@ -44,28 +40,6 @@ class App extends React.Component {
             canvasHeight: rect.height
         };
         this.props.vm.postIOData('mouse', coordinates);
-    }
-    onMouseUp (e) {
-        const rect = document.body.getBoundingClientRect();
-        const data = {
-            isDown: false,
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-            canvasWidth: rect.width,
-            canvasHeight: rect.height
-        };
-        this.props.vm.postIOData('mouse', data);
-    }
-    onMouseDown (e) {
-        const rect = document.body.getBoundingClientRect();
-        const data = {
-            isDown: true,
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-            canvasWidth: rect.width,
-            canvasHeight: rect.height
-        };
-        this.props.vm.postIOData('mouse', data);
     }
     fetchProjectId () {
         return location.hash.substring(1);
