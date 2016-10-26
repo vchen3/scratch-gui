@@ -19,6 +19,7 @@ class App extends React.Component {
     }
     componentDidMount () {
         window.addEventListener('hashchange', this.updateProject);
+        // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({toolbox: this.toolbox});
         this.updateProject();
     }
@@ -51,9 +52,10 @@ class App extends React.Component {
                 projectData={this.state.projectData}
                 vm={this.props.vm}
             >
+                {/* eslint-disable react/jsx-max-props-per-line, react/jsx-sort-props */}
                 <xml
+                    ref={tb => (this.toolbox = tb)}
                     style={{display: 'none'}}
-                    ref={tb => this.toolbox = tb}
                 >
                     <category is name="Sound" colour="#D65CD6" secondaryColour="#BD42BD">
                         <block type="sound_play">
@@ -373,9 +375,13 @@ class App extends React.Component {
                         </block>
                     </category>
                 </xml>
+                {/* eslint-enable react/jsx-max-props-per-line, react/jsx-sort-props */}
                 {this.state.toolbox ?
                     <Blocks
-                        vm={this.props.vm}
+                        options={{
+                            media: `${this.props.basePath}static/blocks-media/`,
+                            toolbox: this.state.toolbox
+                        }}
                         style={{
                             position: 'absolute',
                             top: 0,
@@ -383,12 +389,8 @@ class App extends React.Component {
                             bottom: 0,
                             left: 0
                         }}
-                        options={{
-                            media: `${this.props.basePath}static/blocks-media/`,
-                            toolbox: this.state.toolbox
-                        }}
-                    />
-                :
+                        vm={this.props.vm}
+                    /> :
                     null
                 }
             </GUI>
