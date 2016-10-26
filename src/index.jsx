@@ -11,9 +11,7 @@ const ProjectLoader = require('./lib/project-loader');
 class App extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, ['onMouseMove']);
-        this.fetchProjectId = this.fetchProjectId.bind(this);
-        this.updateProject = this.updateProject.bind(this);
+        bindAll(this, ['fetchProjectId', 'updateProject', 'onMouseMove']);
         this.state = {
             projectId: null,
             projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
