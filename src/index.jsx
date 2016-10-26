@@ -32,12 +32,13 @@ class App extends React.Component {
         window.removeEventListener('mousemove', this.onMouseMove);
     }
     onMouseMove (e) {
-        const rect = document.body.getBoundingClientRect();
+        const width = window.innerWidth;
+        const height = window.innerHeight;
         const coordinates = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top,
-            canvasWidth: rect.width,
-            canvasHeight: rect.height
+            x: Math.round((e.clientX / width) * 200),
+            y: Math.round((e.clientY / height) * 200),
+            canvasWidth: 200,
+            canvasHeight: 200
         };
         this.props.vm.postIOData('mouse', coordinates);
     }
