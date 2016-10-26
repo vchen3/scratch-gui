@@ -213,6 +213,8 @@ class App extends React.Component {
                         <block type="sensing_dayssince2000" />
                     </category>
 
+                    <category is name="Data" colour="#FF8C1A" secondaryColour="#DB6E00" custom="VARIABLE" />
+
                     <category is name="Operators" colour="#40BF4A" secondaryColour="#389438">
                         <block type="operator_add">
                             <value name="NUM1">
