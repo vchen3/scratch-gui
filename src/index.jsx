@@ -18,19 +18,20 @@ class App extends React.Component {
         };
     }
     componentDidMount () {
-        window.addEventListener('hashchange', this.updateProject);
+        this.hashChangeListener = () => this.updateProject();
+        window.addEventListener('hashchange', this.hashChangeListener);
         // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({toolbox: this.toolbox});
-        this.updateProject();
+        this.updateProject(this.props.initialProjectId);
     }
     componentWillUnmount () {
-        window.removeEventListener('hashchange', this.updateProject);
+        window.removeEventListener('hashchange', this.hashChangeListener);
     }
     fetchProjectId () {
         return location.hash.substring(1);
     }
-    updateProject () {
-        const projectId = this.fetchProjectId();
+    updateProject (projectId) {
+        projectId = projectId || this.fetchProjectId();
         if (projectId !== this.state.projectId) {
             if (projectId.length < 1) {
                 return this.setState({
@@ -402,6 +403,7 @@ class App extends React.Component {
 
 App.propTypes = {
     basePath: React.PropTypes.string,
+    initialProjectId: React.PropTypes.number,
     vm: React.PropTypes.instanceOf(VM)
 };
 
@@ -412,4 +414,5 @@ App.defaultProps = {
 const appTarget = document.createElement('div');
 document.body.appendChild(appTarget);
 
-ReactDOM.render(<App basePath={process.env.BASE_PATH} />, appTarget);
+ReactDOM.render(
+    <App basePath={process.env.BASE_PATH} />, appTarget);
