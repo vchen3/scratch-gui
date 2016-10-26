@@ -2,8 +2,8 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const VM = require('scratch-vm');
 
-const Blocks = require('./containers/blocks');
-const GUI = require('./containers/gui');
+const Blocks = require('./containers/blocks.jsx');
+const GUI = require('./containers/gui.jsx');
 const log = require('./lib/log');
 const ProjectLoader = require('./lib/project-loader');
 
@@ -29,7 +29,7 @@ class App extends React.Component {
         return location.hash.substring(1);
     }
     updateProject () {
-        let projectId = this.fetchProjectId();
+        const projectId = this.fetchProjectId();
         if (projectId !== this.state.projectId) {
             if (projectId.length < 1) {
                 return this.setState({

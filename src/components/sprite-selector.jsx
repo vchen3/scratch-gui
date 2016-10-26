@@ -6,6 +6,9 @@ class SpriteSelectorComponent extends React.Component {
             onChange,
             sprites,
             value,
+            openNewSprite,
+            openNewCostume,
+            openNewBackdrop,
             ...props
         } = this.props;
         return (
@@ -13,7 +16,7 @@ class SpriteSelectorComponent extends React.Component {
                 style={{
                     position: 'absolute',
                     top: 380,
-                    right: 10,
+                    right: 10
                 }}
                 {...props}
             >
@@ -23,11 +26,19 @@ class SpriteSelectorComponent extends React.Component {
                     onChange={onChange}
                 >
                     {sprites.map(sprite => (
-                        <option value={sprite.id} key={sprite.id}>
+                        <option
+                            key={sprite.id}
+                            value={sprite.id}
+                        >
                             {sprite.name}
                         </option>
                     ))}
                 </select>
+                <p>
+                    <button onClick={openNewSprite}>New sprite</button>
+                    <button onClick={openNewCostume}>New costume</button>
+                    <button onClick={openNewBackdrop}>New backdrop</button>
+                </p>
             </div>
         );
     }
@@ -35,6 +46,9 @@ class SpriteSelectorComponent extends React.Component {
 
 SpriteSelectorComponent.propTypes = {
     onChange: React.PropTypes.func,
+    openNewBackdrop: React.PropTypes.func,
+    openNewCostume: React.PropTypes.func,
+    openNewSprite: React.PropTypes.func,
     sprites: React.PropTypes.arrayOf(
         React.PropTypes.shape({
             id: React.PropTypes.string,

@@ -1,6 +1,6 @@
 const React = require('react');
 
-class GreenFlagComponent extends React.Component {
+class StopAllComponent extends React.Component {
     render () {
         const {
             onClick,
@@ -9,11 +9,11 @@ class GreenFlagComponent extends React.Component {
         } = this.props;
         return (
             <div
-                className="scratch-green-flag"
+                className="scratch-stop-all"
                 style={{
                     position: 'absolute',
                     top: 380,
-                    right: 440,
+                    right: 400,
                     width: 50
                 }}
                 {...props}
@@ -24,13 +24,13 @@ class GreenFlagComponent extends React.Component {
     }
 }
 
-GreenFlagComponent.propTypes = {
+StopAllComponent.propTypes = {
     onClick: React.PropTypes.func,
-    title: React.PropTypes.string,
+    title: React.PropTypes.string
 };
 
-GreenFlagComponent.defaultProps = {
-    title: 'Go'
+StopAllComponent.defaultProps = {
+    title: 'Stop'
 };
 
-module.exports = GreenFlagComponent;
+module.exports = StopAllComponent;
