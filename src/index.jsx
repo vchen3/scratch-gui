@@ -455,4 +455,7 @@ const appTarget = document.createElement('div');
 document.body.appendChild(appTarget);
 
 ReactDOM.render(
-    <App basePath={process.env.BASE_PATH} />, appTarget);
+    <App
+        basePath={process.env.BASE_PATH}
+        initialProjectId={123236165}
+    />, appTarget);
