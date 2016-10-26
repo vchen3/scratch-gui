@@ -23,7 +23,7 @@ class App extends React.Component {
         window.addEventListener('mousemove', this.onMouseMove);
         // eslint-disable-next-line react/no-did-mount-set-state
         this.setState({toolbox: this.toolbox});
-        this.updateProject(this.props.initialProjectId);
+        this.updateProject(this.fetchProjectId() || this.props.initialProjectId);
     }
     componentWillUnmount () {
         window.removeEventListener('hashchange', this.hashChangeListener);
