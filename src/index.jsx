@@ -4,9 +4,11 @@ const ReactDOM = require('react-dom');
 const VM = require('scratch-vm');
 
 const Blocks = require('./containers/blocks.jsx');
+const GreenFlag = require('./containers/green-flag.jsx');
 const GUI = require('./containers/gui.jsx');
 const log = require('./lib/log');
 const ProjectLoader = require('./lib/project-loader');
+const StopAll = require('./containers/stop-all.jsx');
 
 class App extends React.Component {
     constructor (props) {
@@ -392,8 +394,9 @@ class App extends React.Component {
                     </category>
                 </xml>
                 {/* eslint-enable react/jsx-max-props-per-line, react/jsx-sort-props */}
-                {this.state.toolbox ?
+                {this.state.toolbox ? [
                     <Blocks
+                        key="blocks"
                         options={{
                             media: `${this.props.basePath}static/blocks-media/`,
                             toolbox: this.state.toolbox
@@ -406,7 +409,28 @@ class App extends React.Component {
                             left: 0
                         }}
                         vm={this.props.vm}
-                    /> :
+                    />,
+                    <GreenFlag
+                        key="green-flag"
+                        style={{
+                            position: 'absolute',
+                            top: 10,
+                            right: 70,
+                            width: 50
+                        }}
+                        vm={this.props.vm}
+                    />,
+                    <StopAll
+                        key="stop-all"
+                        style={{
+                            position: 'absolute',
+                            top: 10,
+                            right: 10,
+                            width: 50
+                        }}
+                        vm={this.props.vm}
+                    />
+                ] :
                     null
                 }
             </GUI>
