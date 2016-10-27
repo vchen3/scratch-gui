@@ -12,6 +12,7 @@ install:
 - npm install
 - npm update
 - cd node_modules/scratch-vm/ && npm install && npm update && npm run prepublish && cd -
+- cd node_modules/scratch-blocks/ && npm install && npm update && npm run prepublish && cd -
 after_script:
 - |
   # RELEASE_BRANCHES and NPM_TOKEN defined in Travis settings panel
