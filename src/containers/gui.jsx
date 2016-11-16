@@ -96,6 +96,10 @@ class GUI extends React.Component {
         /* eslint-disable react/jsx-max-props-per-line, lines-around-comment */
         return (
             <GUIComponent {... guiProps}>
+                <Stage vm={vm} {...stageProps} />
+                <Blocks vm={vm} {... blocksProps} />
+            </GUIComponent>
+            /*<GUIComponent {... guiProps}>
                 <GreenFlag vm={vm} {...greenFlagProps} />
                 <StopAll vm={vm} {...stopAllProps} />
                 <Stage vm={vm} {...stageProps} />
@@ -104,7 +108,7 @@ class GUI extends React.Component {
                 <SpriteLibrary vm={vm} {...spriteLibraryProps} />
                 <CostumeLibrary vm={vm} {...costumeLibraryProps} />
                 <BackdropLibrary vm={vm} {...backdropLibraryProps} />
-            </GUIComponent>
+            </GUIComponent>*/
         );
         /* eslint-enable react/jsx-max-props-per-line, lines-around-comment */
     }
