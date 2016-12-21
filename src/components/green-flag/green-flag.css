@@ -1,11 +1,9 @@
 .green-flag {
-    position: absolute;
-    top: 8px;
-    right: calc(480px - 16px);
     width: 16px;
     height: 16px;
+    opacity: 0.5;
 }
-
-.active {
-    filter: saturate(200%) brightness(150%);
+.green-flag.is-active,
+.green-flag:hover {
+    opacity: 1;
 }
