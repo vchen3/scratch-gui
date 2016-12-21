@@ -1,37 +1,38 @@
+const classNames = require('classnames');
 const React = require('react');
-const greenFlagIcon = require('./green-flag.svg');
 
-class GreenFlagComponent extends React.Component {
-    render () {
-        const {
-            onClick,
-            title,
-            ...props
-        } = this.props;
-        return (
-            <img
-                className="scratch-green-flag"
-                src={greenFlagIcon}
-                style={{
-                    position: 'absolute',
-                    top: 380,
-                    right: 440,
-                    width: 50
-                }}
-                title={title}
-                onClick={onClick}
-                {...props}
-            />
-        );
-    }
-}
+const greenFlagIcon = require('./green-flag.svg');
+const styles = require('./green-flag.css');
+
+const GreenFlagComponent = function (props) {
+    const {
+        active,
+        onClick,
+        title,
+        ...componentProps
+    } = props;
+    return (
+        <img
+            className={classNames({
+                [styles.greenFlag]: true,
+                [styles.active]: active
+            })}
+            src={greenFlagIcon}
+            title={title}
+            onClick={onClick}
+            {...componentProps}
+        />
+    );
+};
 
 GreenFlagComponent.propTypes = {
+    active: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     title: React.PropTypes.string
 };
 
 GreenFlagComponent.defaultProps = {
+    active: false,
     title: 'Go'
 };
 

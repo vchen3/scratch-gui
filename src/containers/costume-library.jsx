@@ -3,13 +3,16 @@ const React = require('react');
 const VM = require('scratch-vm');
 const MediaLibrary = require('../lib/media-library');
 
-const LibaryComponent = require('../components/library.jsx');
+const LibaryComponent = require('../components/library/library.jsx');
 
 
 class CostumeLibrary extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, ['setData', 'handleItemSelected']);
+        bindAll(this, [
+            'handleItemSelected',
+            'setData'
+        ]);
         this.state = {costumeData: []};
     }
     componentWillReceiveProps (nextProps) {
@@ -22,7 +25,7 @@ class CostumeLibrary extends React.Component {
     }
     handleItemSelected (item) {
         const vmCostume = {
-            skin: `https://cdn.assets.scratch.mit.edu/internalapi/asset/$(item.md5)/get/`,
+            skin: `https://cdn.assets.scratch.mit.edu/internalapi/asset/${item.md5}/get/`,
             name: item.name,
             rotationCenterX: item.info[0],
             rotationCenterY: item.info[1]

@@ -1,37 +1,38 @@
+const classNames = require('classnames');
 const React = require('react');
-const stopAllIcon = require('./stop-all.svg');
 
-class StopAllComponent extends React.Component {
-    render () {
-        const {
-            onClick,
-            title,
-            ...props
-        } = this.props;
-        return (
-            <img
-                className="scratch-stop-all"
-                src={stopAllIcon}
-                style={{
-                    position: 'absolute',
-                    top: 380,
-                    right: 380,
-                    width: 50
-                }}
-                title={title}
-                onClick={onClick}
-                {...props}
-            />
-        );
-    }
-}
+const stopAllIcon = require('./stop-all.svg');
+const styles = require('./stop-all.css');
+
+const StopAllComponent = function (props) {
+    const {
+        active,
+        onClick,
+        title,
+        ...componentProps
+    } = props;
+    return (
+        <img
+            className={classNames({
+                [styles.stopAll]: true,
+                [styles.active]: active
+            })}
+            src={stopAllIcon}
+            title={title}
+            onClick={onClick}
+            {...componentProps}
+        />
+    );
+};
 
 StopAllComponent.propTypes = {
+    active: React.PropTypes.bool,
     onClick: React.PropTypes.func,
     title: React.PropTypes.string
 };
 
 StopAllComponent.defaultProps = {
+    active: false,
     title: 'Stop'
 };
 
