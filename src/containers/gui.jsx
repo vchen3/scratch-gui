@@ -21,12 +21,14 @@ class GUI extends React.Component {
     render () {
         const {
             projectData, // eslint-disable-line no-unused-vars
+            editorType, // eslint-disable-line no-unused-vars
             vm,
             ...componentProps
         } = this.props;
         return (
             <GUIComponent
                 vm={vm}
+                editorType={this.props.editorType}
                 {...componentProps}
             />
         );
@@ -36,6 +38,7 @@ class GUI extends React.Component {
 GUI.propTypes = {
     ...GUIComponent.propTypes,
     projectData: React.PropTypes.string,
+    editorType: React.PropTypes.number,
     vm: React.PropTypes.instanceOf(VM)
 };
 

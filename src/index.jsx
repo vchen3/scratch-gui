@@ -15,9 +15,11 @@ class App extends React.Component {
         super(props);
         this.fetchProjectId = this.fetchProjectId.bind(this);
         this.updateProject = this.updateProject.bind(this);
+
         this.state = {
             projectId: null,
-            projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
+            projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
+            editorType: this.fetchEditorType()
         };
     }
     componentDidMount () {
@@ -28,7 +30,22 @@ class App extends React.Component {
         window.removeEventListener('hashchange', this.updateProject);
     }
     fetchProjectId () {
-        return window.location.hash.substring(1);
+        var hashString = window.location.hash.substring(1).split(',');
+        console.log(hashString);
+        for (var i=0; i < hashString.length; i++) {
+            if (hashString[i].substring(0,2) != 'e=') {
+                return hashString[i];
+            }
+        }
+    }
+    fetchEditorType () {
+        var hashString = window.location.hash.substring(1).split(',');
+        for (var i=0; i < hashString.length; i++) {
+            if (hashString[i].substring(0,2) == 'e=') {
+                return parseInt(hashString[i].substring(2));
+            }
+        }
+        return 0;
     }
     updateProject () {
         const projectId = this.fetchProjectId();
@@ -51,6 +68,7 @@ class App extends React.Component {
             <GUI
                 basePath={this.props.basePath}
                 projectData={this.state.projectData}
+                editorType={this.state.editorType}
             />
         );
     }
