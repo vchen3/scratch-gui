@@ -6,6 +6,8 @@ const GreenFlag = require('../../containers/green-flag.jsx');
 const TargetPane = require('../../containers/target-pane.jsx');
 const Stage = require('../../containers/stage.jsx');
 const StopAll = require('../../containers/stop-all.jsx');
+const Save = require('../../containers/save.jsx');
+const Load = require('../../containers/load.jsx');
 
 const Box = require('../box/box.jsx');
 
@@ -292,6 +294,9 @@ const GUIComponent = props => {
                 >
                     <GreenFlag vm={vm} />
                     <StopAll vm={vm} />
+                    <Save vm={vm} />
+                    <Load vm={vm} project={"art"}/>
+                    <Load vm={vm} project={"beam"}/>
                 </Box>
                 <Stage
                     shrink={0}

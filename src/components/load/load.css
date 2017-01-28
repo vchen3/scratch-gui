@@ -1,0 +1,8 @@
+.load {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+}
+.load:hover {
+    opacity: 1;
+}
