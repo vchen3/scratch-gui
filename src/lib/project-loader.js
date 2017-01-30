@@ -2,6 +2,8 @@ const xhr = require('xhr');
 
 const log = require('./log');
 
+const Projects = require('./libraries/projects.json')
+
 class ProjectLoader {
     constructor () {
         this.DEFAULT_PROJECT_DATA = ProjectLoader.DEFAULT_PROJECT_DATA;
@@ -14,6 +16,11 @@ class ProjectLoader {
             if (err) return callback(err);
             callback(null, body);
         });
+    }
+    loadFromProjectsFile(id) {
+        if (isNaN(id)) {
+            return JSON.stringify(Projects[id]);
+        }
     }
 }
 

@@ -296,7 +296,7 @@ const GUIComponent = props => {
                     <StopAll vm={vm} />
                     <Save vm={vm} />
                     <Load vm={vm} project={"art"}/>
-                    <Load vm={vm} project={"beam"}/>
+                    <Load vm={vm} project={"olympics"}/>
                 </Box>
                 <Stage
                     shrink={0}

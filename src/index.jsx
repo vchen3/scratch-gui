@@ -49,12 +49,18 @@ class App extends React.Component {
     }
     updateProject () {
         const projectId = this.fetchProjectId();
-        if (projectId !== this.state.projectId) {
+        if (projectId !== this.state.projectId && projectId) {
             if (projectId.length < 1) {
                 return this.setState({
                     projectId: projectId,
                     projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
                 });
+            } else if (isNaN(projectId)) {
+                var projectData = ProjectLoader.loadFromProjectsFile(projectId);
+                return this.setState({
+                    projectId: projectId,
+                    projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
+                })
             }
             ProjectLoader.load(projectId, (err, body) => {
                 if (err) return log.error(err);
