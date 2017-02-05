@@ -16,6 +16,12 @@ class App extends React.Component {
         this.fetchProjectId = this.fetchProjectId.bind(this);
         this.updateProject = this.updateProject.bind(this);
 
+        // Update from file loading
+        this.updateProjectFromLoadButton = this.updateProjectFromLoadButton.bind(this);
+        this.fileLoader = new FileReader();
+        this.fileLoader.onload = this.fileLoaderOnLoad.bind(this);
+        this.fileInputField = null;
+
         this.state = {
             projectId: null,
             projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
@@ -24,10 +30,22 @@ class App extends React.Component {
     }
     componentDidMount () {
         window.addEventListener('hashchange', this.updateProject);
+
+        var loader = document.getElementById("files");
+        if (loader) {
+            this.fileInputField = loader;
+            this.fileInputField.addEventListener('change', this.updateProjectFromLoadButton, false);
+        } else {
+            console.log("no file loader");
+        }
+
         this.updateProject();
     }
     componentWillUnmount () {
         window.removeEventListener('hashchange', this.updateProject);
+        if (this.fileLoader) {
+            this.fileLoader.removeEventListener('change', this.updateProjectFromLoadButton);
+        }
     }
     fetchProjectId () {
         var hashString = window.location.hash.substring(1).split(',');
@@ -68,6 +86,17 @@ class App extends React.Component {
             });
             this.setState({projectId: projectId});
         }
+    }
+    // Function for uploading from a local file.
+    updateProjectFromLoadButton (e) {
+        this.fileLoader.readAsText(e.target.files[0]);
+    }
+    fileLoaderOnLoad() {
+      console.log("in onload");
+      var projectData = this.fileLoader.result;
+      console.log(projectData);
+      this.setState({projectId: this.fileLoader.name,
+                   projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)})
     }
     render () {
         return (

@@ -11,15 +11,7 @@ const LoadComponent = function (props) {
         ...componentProps
     } = props;
     return (
-        <img
-            className={classNames({
-                [styles.load]: true,
-            })}
-            src={loadIcon}
-            title={title}
-            onClick={onClick}
-            {...componentProps}
-        />
+        <input type="file" id="files" name="files" />
     );
 };
 

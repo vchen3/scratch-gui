@@ -295,8 +295,7 @@ const GUIComponent = props => {
                     <GreenFlag vm={vm} />
                     <StopAll vm={vm} />
                     <Save vm={vm} />
-                    <Load vm={vm} project={"art"}/>
-                    <Load vm={vm} project={"olympics"}/>
+                    <Load />
                 </Box>
                 <Stage
                     shrink={0}

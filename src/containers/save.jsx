@@ -3,6 +3,7 @@ const React = require('react');
 const VM = require('scratch-vm');
 
 const SaveComponent = require('../components/save/save.jsx');
+const date = new Date();
 
 class Save extends React.Component {
     constructor (props) {
@@ -13,11 +14,23 @@ class Save extends React.Component {
     }
     handleClick (e) {
         e.preventDefault();
-        // TODO(morant): Actually save a project. For now, just outputs it
-        // to console log.
         var projectJson = this.props.vm.saveProjectSb3();
-        console.log("Can't save projects yet, but here's the JSON for it:");
-        console.log(projectJson);
+
+        // Download project data into a file - create link element,
+        // simulate click on it, and then remove it.
+        var saveLink = document.createElement("a");
+        document.body.appendChild(saveLink);
+
+        var data = new Blob([projectJson], {type: 'text'});
+        var url = window.URL.createObjectURL(data);
+        saveLink.href = url;
+        // File name: project-DATE-TIME
+        saveLink.download = "project-" + date.toLocaleDateString() + 
+                            "-"+ date.toLocaleTimeString() +".json";
+        saveLink.click();
+        window.URL.revokeObjectURL(url);
+
+        document.body.removeChild(saveLink);
     }
     render () {
         const {
