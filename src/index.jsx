@@ -25,7 +25,8 @@ class App extends React.Component {
         this.state = {
             projectId: null,
             projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
-            editorType: this.fetchEditorType()
+            editorType: this.fetchEditorType(),
+            blocks: ProjectLoader.loadBlocksFromFile(this.fetchProjectId())
         };
     }
     componentDidMount () {
@@ -104,6 +105,7 @@ class App extends React.Component {
                 basePath={this.props.basePath}
                 projectData={this.state.projectData}
                 editorType={this.state.editorType}
+                blocks={this.state.blocks}
             />
         );
     }

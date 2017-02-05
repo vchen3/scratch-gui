@@ -22,6 +22,12 @@ class ProjectLoader {
             return JSON.stringify(Projects[id]);
         }
     }
+    loadBlocksFromFile(id) {
+        if (id && isNaN(id) && Projects[id]) {
+            return Projects[id].blocksPalette;
+        }
+        return null;
+    }
 }
 
 ProjectLoader.DEFAULT_PROJECT_DATA = require('./empty-project.json');
