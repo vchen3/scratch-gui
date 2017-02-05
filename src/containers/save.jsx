@@ -3,6 +3,7 @@ const React = require('react');
 const VM = require('scratch-vm');
 
 const SaveComponent = require('../components/save/save.jsx');
+const Blocks = require('./blocks.jsx');
 const date = new Date();
 
 class Save extends React.Component {
@@ -15,6 +16,9 @@ class Save extends React.Component {
     handleClick (e) {
         e.preventDefault();
         var projectJson = this.props.vm.saveProjectSb3();
+        var blocksString = this.props.blocks.props.options.toolbox.replace(/\"/g, "\\\"");
+        // Not using JSON strinfigy to prevent escaping issues.
+        projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\"}";
 
         // Download project data into a file - create link element,
         // simulate click on it, and then remove it.
@@ -47,7 +51,8 @@ class Save extends React.Component {
 }
 
 Save.propTypes = {
-    vm: React.PropTypes.instanceOf(VM)
+    vm: React.PropTypes.instanceOf(VM),
+    blocks: React.PropTypes.instanceOf(Blocks)
 };
 
 module.exports = Save;

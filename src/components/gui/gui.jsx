@@ -28,6 +28,17 @@ const GUIComponent = props => {
             </Box>
         );
     }
+    var blocksCompnonet = React.createElement(Blocks, {
+            grow : 1,
+            options : {
+                media: `${basePath}static/blocks-media/`,
+                showScaffoldingCategories: editorType,
+                toolbox: blocks
+            },
+            vm: vm
+        }
+
+    );
     return (
         <Box
             grow={1}
@@ -47,15 +58,7 @@ const GUIComponent = props => {
                         marginTop: 8
                     }}
                 />
-                <Blocks
-                    grow={1}
-                    options={{
-                        media: `${basePath}static/blocks-media/`,
-                        showScaffoldingCategories: editorType,
-                        toolbox: blocks
-                    }}
-                    vm={vm}
-                />
+                {blocksCompnonet}
             </Box>
             <Box
                 direction="column"
@@ -72,7 +75,7 @@ const GUIComponent = props => {
                 >
                     <GreenFlag vm={vm} />
                     <StopAll vm={vm} />
-                    <Save vm={vm} />
+                    <Save vm={vm} blocks={blocksCompnonet}/>
                     <Load />
                 </Box>
                 <Stage
