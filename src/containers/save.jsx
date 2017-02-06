@@ -17,8 +17,26 @@ class Save extends React.Component {
         e.preventDefault();
         var projectJson = this.props.vm.saveProjectSb3();
         var blocksString = this.props.blocks.props.options.toolbox.replace(/\"/g, "\\\"");
+
+        var project = JSON.parse(projectJson);
+        console.log(project);
+
         // Not using JSON strinfigy to prevent escaping issues.
-        projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\"}";
+        projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\""
+
+        projectJson += ", \"workspaceBlocks\": [";
+        var workspaceBlocks = project.targets[1].blocks;
+        for(var key in workspaceBlocks) {
+            var block = workspaceBlocks[key];
+            projectJson += "\"" + block.opcode +"\", ";
+        }
+
+
+        
+        projectJson = projectJson.slice(0, -2) + "]";
+        projectJson += "}";
+
+        
 
         // Download project data into a file - create link element,
         // simulate click on it, and then remove it.
