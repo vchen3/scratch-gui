@@ -1,7 +1,8 @@
 .save {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     opacity: 0.5;
+    margin-right: 8px;
 }
 .save:hover {
     opacity: 1;

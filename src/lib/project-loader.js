@@ -28,6 +28,12 @@ class ProjectLoader {
         }
         return null;
     }
+    loadEditorTypeFromFile(id) {
+        if (id && isNaN(id) && Projects[id]) {
+            return Projects[id].editorType;
+        }
+        return null;
+    }
 }
 
 ProjectLoader.DEFAULT_PROJECT_DATA = require('./empty-project.json');

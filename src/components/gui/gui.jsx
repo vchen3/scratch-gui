@@ -73,17 +73,11 @@ const GUIComponent = props => {
                         marginTop: 8
                     }}
                 >
-                    <GreenFlag vm={vm} />
-                    <StopAll vm={vm} />
                     <Save vm={vm} blocks={blocksCompnonet}/>
                     <Load />
                 </Box>
                 <Stage
                     shrink={0}
-                    vm={vm}
-                />
-                <TargetPane
-                    grow={1}
                     vm={vm}
                 />
             </Box>

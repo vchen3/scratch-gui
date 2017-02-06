@@ -22,11 +22,13 @@ class App extends React.Component {
         this.fileLoader.onload = this.fileLoaderOnLoad.bind(this);
         this.fileInputField = null;
 
+        var projectId = this.fetchProjectId();
+
         this.state = {
             projectId: null,
             projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
-            editorType: this.fetchEditorType(),
-            blocks: ProjectLoader.loadBlocksFromFile(this.fetchProjectId())
+            editorType: this.fetchEditorType(projectId),
+            blocks: ProjectLoader.loadBlocksFromFile(projectId)
         };
     }
     componentDidMount () {
@@ -57,14 +59,15 @@ class App extends React.Component {
             }
         }
     }
-    fetchEditorType () {
+    fetchEditorType (projectId) {
         var hashString = window.location.hash.substring(1).split(',');
         for (var i=0; i < hashString.length; i++) {
             if (hashString[i].substring(0,2) == 'e=') {
                 return parseInt(hashString[i].substring(2));
             }
         }
-        return 0;
+        var fromFile = ProjectLoader.loadEditorTypeFromFile(projectId);
+        return fromFile ? fromFile : 0;
     }
     updateProject () {
         const projectId = this.fetchProjectId();
