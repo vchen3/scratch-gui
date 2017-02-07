@@ -80,6 +80,10 @@ const GUIComponent = props => {
                     shrink={0}
                     vm={vm}
                 />
+                <TargetPane
+                    grow={1}
+                    vm={vm}
+                />
             </Box>
         </Box>
     );
