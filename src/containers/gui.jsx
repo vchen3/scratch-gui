@@ -9,6 +9,7 @@ const DefaultBlocks = require('../lib/libraries/blocks.json');
 class GUI extends React.Component {
     componentDidMount () {
         this.props.vm.loadProject(this.props.projectData);
+        this.props.vm.setCompatibilityMode(true);
         this.props.vm.start();
     }
     componentWillReceiveProps (nextProps) {
