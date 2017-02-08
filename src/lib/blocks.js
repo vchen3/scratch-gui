@@ -1,11 +1,7 @@
 const ScratchBlocks = require('scratch-blocks');
 
 module.exports = function (vm) {
-    console.log("Export function");
-    console.log(vm);
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
-        console.log("in init");
-        console.log(vm);
         this.jsonInit(
             {
                 message0: '%1',
