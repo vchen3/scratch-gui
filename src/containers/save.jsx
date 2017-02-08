@@ -16,27 +16,26 @@ class Save extends React.Component {
     handleClick (e) {
         e.preventDefault();
         var projectJson = this.props.vm.saveProjectSb3();
-        var blocksString = this.props.blocks.props.options.toolbox.replace(/\"/g, "\\\"");
 
         var project = JSON.parse(projectJson);
-        console.log(project);
 
-        // Not using JSON strinfigy to prevent escaping issues.
-        projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\""
-
-        projectJson += ", \"workspaceBlocks\": [";
-        var workspaceBlocks = project.targets[1].blocks;
-        for(var key in workspaceBlocks) {
-            var block = workspaceBlocks[key];
-            projectJson += "\"" + block.opcode +"\", ";
+        // Write palette blocks to JSON
+        if (this.props.blocks) {
+            var blocksString = this.props.blocks.replace(/\"/g, "\\\"");
+            // Not using JSON strinfigy to prevent escaping issues.
+            projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\"}"
         }
 
-
-        
-        projectJson = projectJson.slice(0, -2) + "]";
-        projectJson += "}";
-
-        
+        // Write names of blocks that are in the workspace
+        if (project.targets.length > 1 && project.targets[1].blocks && project.targets[1].blocks.length > 0) {
+            projectJson = projectJson.slice(0, -1) + ", \"workspaceBlocks\": [";
+            var workspaceBlocks = project.targets[1].blocks;
+            for(var key in workspaceBlocks) {
+                var block = workspaceBlocks[key];
+                projectJson += "\"" + block.opcode +"\", ";
+            }
+            projectJson = projectJson.slice(0, -2) + "]}";
+        }
 
         // Download project data into a file - create link element,
         // simulate click on it, and then remove it.
@@ -57,6 +56,7 @@ class Save extends React.Component {
     render () {
         const {
             vm, // eslint-disable-line no-unused-vars
+            blocks, // eslint-disable-line no-unused-vars
             ...props
         } = this.props;
         return (
@@ -70,7 +70,7 @@ class Save extends React.Component {
 
 Save.propTypes = {
     vm: React.PropTypes.instanceOf(VM),
-    blocks: React.PropTypes.instanceOf(Blocks)
+    blocks: React.PropTypes.string
 };
 
 module.exports = Save;
