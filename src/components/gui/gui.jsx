@@ -56,10 +56,6 @@ const GUIComponent = props => {
                     }}
                     vm={vm}
                 />
-
-            },
-            vm: vm
-        }
             </Box>
             <Box
                 direction="column"
@@ -74,6 +70,8 @@ const GUIComponent = props => {
                         marginTop: 8
                     }}
                 >
+                    <GreenFlag vm={vm} />
+                    <StopAll vm={vm} />
                     <Save vm={vm} blocks={blocks}/>
                     <Load />
                 </Box>

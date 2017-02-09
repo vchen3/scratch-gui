@@ -4,6 +4,7 @@
     display: inline-block;
     height: 72px;
     width: 72px;
+    text-align: center;
 }
 .sprite-selector-item.is-selected {
     border-color: black;

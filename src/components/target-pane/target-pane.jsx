@@ -67,43 +67,6 @@ class TargetPane extends React.Component {
                     shrink={0}
                     width={72}
                 >
-                    {stage.id && <StageSelector
-                        backdropCount={stage.costumeCount}
-                        id={stage.id}
-                        selected={stage.id === editingTarget}
-                        shrink={0}
-                        url={stage.costume.skin}
-                        onSelect={onSelectSprite}
-                    />}
-                    <Box
-                        alignContent="flex-start"
-                        alignItems="flex-start"
-                        direction="column"
-                        grow={1}
-                        shrink={0}
-                    >
-                        <button onClick={onNewSpriteClick}>New Sprite</button>
-                        {editingTarget === stage.id ? (
-                            <button onClick={onNewBackdropClick}>New Backdrop</button>
-                        ) : (
-                            <button onClick={onNewCostumeClick}>New Costume</button>
-                        )}
-                        <SpriteLibrary
-                            visible={spriteLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseSpriteLibrary}
-                        />
-                        <CostumeLibrary
-                            visible={costumeLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseCostumeLibrary}
-                        />
-                        <BackdropLibrary
-                            visible={backdropLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseBackdropLibrary}
-                        />
-                    </Box>
                 </Box>
             </Box>
         );
