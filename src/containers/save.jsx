@@ -26,13 +26,22 @@ class Save extends React.Component {
             projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\"}"
         }
 
-        // Write names of blocks that are in the workspace
-        if (project.targets.length > 1 && project.targets[1].blocks && project.targets[1].blocks.length > 0) {
-            projectJson = projectJson.slice(0, -1) + ", \"workspaceBlocks\": [";
-            var workspaceBlocks = project.targets[1].blocks;
-            for(var key in workspaceBlocks) {
-                var block = workspaceBlocks[key];
-                projectJson += "\"" + block.opcode +"\", ";
+        // Write names of UNIQUE blocks that are in the workspace for each target (stage or sprite)
+        var workspaceBlocksStr = new Set();
+        for (i in project.targets) {
+            var target = project.targets[i]
+            if (target.blocks && Object.keys(target.blocks).length > 0) {
+                var workspaceBlocks = target.blocks;
+                for(var key in workspaceBlocks) {
+                    var block = workspaceBlocks[key];
+                    workspaceBlocksStr.add(block.opcode);
+                }
+            }
+        }
+        if (workspaceBlocksStr.size > 0) {
+            projectJson = projectJson.slice(0, -1) + ", \"workspaceBlocks\": [" ;
+            for (let command of workspaceBlocksStr) {
+                projectJson += "\"" + command +"\", ";
             }
             projectJson = projectJson.slice(0, -2) + "]}";
         }
