@@ -10,8 +10,10 @@ module.exports = function (vm) {
                         type: 'field_dropdown',
                         name: 'SOUND_MENU',
                         options: function () {
-                            const menu = (vm.editingTarget) ?
-                                vm.editingTarget.sprite.sounds.map(sound => [sound.name, sound.name]) : [];
+                            const menu = (vm.editingTarget)
+                                ? vm.editingTarget.sprite.sounds.map(sound => [sound.name, sound.name])
+                                // Default option, when creating blocks before sprites are loaded.
+                                : ['select...', '0'];
                             return menu;
                         }
                     }
