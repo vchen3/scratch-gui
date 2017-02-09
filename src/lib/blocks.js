@@ -12,7 +12,6 @@ module.exports = function (vm) {
                         options: function () {
                             const menu = (vm.editingTarget) ?
                                 vm.editingTarget.sprite.sounds.map(sound => [sound.name, sound.name]) : [];
-                            menu.unshift(['select...', '0']);
                             return menu;
                         }
                     }
