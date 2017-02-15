@@ -2,7 +2,7 @@
 	"gymnastics":
 	{
 		"title": "Gymnastics",
-        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5050.png",
+        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13104/3155.png",
         "tutorialLoc": "/#gymnastics",
 		"targets":[
 			{"id":"D}-yJ4cJ+U7`Q_c0qRX[","name":"Stage","isStage":true,"x":0,"y":0,"size":100,"direction":90,"costume":{"skin":"https://cdn.assets.scratch.mit.edu/internalapi/asset/61c9cc56c1bdc25276fcec19343292c1.svg/get/","name":"stripes","bitmapResolution":1,"rotationCenterX":247,"rotationCenterY":184},"costumeCount":1,"currentCostume":0,"visible":true,"rotationStyle":"all around","blocks":{},"variables":{},"lists":{},"costumes":[{"skin":"https://cdn.assets.scratch.mit.edu/internalapi/asset/61c9cc56c1bdc25276fcec19343292c1.svg/get/","name":"stripes","bitmapResolution":1,"rotationCenterX":247,"rotationCenterY":184}],"sounds":[{"format":"","fileUrl":"https://cdn.assets.scratch.mit.edu/internalapi/asset/83a9787d4cb6f3b7632b4ddfebf74367.wav/get/","rate":11025,"sampleCount":258,"soundID":-1,"name":"pop","md5":"83a9787d4cb6f3b7632b4ddfebf74367.wav"}]},
@@ -14,7 +14,7 @@
 	"art":
 	{
 		"title": "Make Art",
-        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5050.png",
+        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5435.png",
         "tutorialLoc": "/#art",
         "editorType": 1,
 		"targets":[
@@ -27,7 +27,7 @@
 	"music":
 	{
 		"title": "Make Music",
-		"thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5393.png",
+		"thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/14490/0710.png",
 		"tutorialLoc": "/#music",
 
 		"targets":[
@@ -42,9 +42,9 @@
 	},
 	"music2":
 	{
-		"title": "Make Music",
+		"title": "Make Music 2",
 		"thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5393.png",
-		"tutorialLoc": "/#music",
+		"tutorialLoc": "/#music2",
 
 		"targets":[
 			{"id":"cpa%][G(FzbjiS2Q0Pfk","name":"Stage","isStage":true,"x":0,"y":0,"size":100,"direction":90,"costume":{"skin":"https://cdn.assets.scratch.mit.edu/internalapi/asset/12288218b23a264c84bd3c22bd03e90a.svg/get/","name":"spotlight-stage2","bitmapResolution":1,"rotationCenterX":248,"rotationCenterY":181},"costumeCount":2,"currentCostume":1,"visible":true,"rotationStyle":"all around","blocks":{},"variables":{},"lists":{},"costumes":[{"skin":"https://cdn.assets.scratch.mit.edu/internalapi/asset/739b5e2a2435f6e1ec2993791b423146.png/get/","name":"backdrop1","bitmapResolution":1,"rotationCenterX":240,"rotationCenterY":180},{"skin":"https://cdn.assets.scratch.mit.edu/internalapi/asset/12288218b23a264c84bd3c22bd03e90a.svg/get/","name":"spotlight-stage2","bitmapResolution":1,"rotationCenterX":248,"rotationCenterY":181}],"sounds":[{"format":"","fileUrl":"https://cdn.assets.scratch.mit.edu/internalapi/asset/83a9787d4cb6f3b7632b4ddfebf74367.wav/get/","rate":11025,"sampleCount":258,"soundID":-1,"name":"pop","md5":"83a9787d4cb6f3b7632b4ddfebf74367.wav"}]},
