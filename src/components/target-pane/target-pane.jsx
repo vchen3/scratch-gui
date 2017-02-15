@@ -54,70 +54,11 @@ class TargetPane extends React.Component {
                 className={styles.targetPane}
                 {...componentProps}
             >
-               
                 <SpriteSelectorComponent
                     selectedId={editingTarget}
                     sprites={sprites}
                     onSelectSprite={onSelectSprite}
                 />
-                <Box className={styles.stageSelectorWrapper}>
-                    {stage.id && <StageSelector
-                        backdropCount={stage.costumeCount}
-                        id={stage.id}
-                        selected={stage.id === editingTarget}
-                        url={stage.costume.skin}
-                        onSelect={onSelectSprite}
-                    />}
-                    <Box>
-
-                        <button
-                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSprite)}
-                            onClick={onNewSpriteClick}
-                        >
-                            <img
-                                className={styles.addButton}
-                                src={addIcon}
-                            />
-                        </button>
-
-                        {editingTarget === stage.id ? (
-                            <button
-                                className={classNames(styles.addButtonWrapper, styles.addButtonWrapperStage)}
-                                onClick={onNewBackdropClick}
-                            >
-                                <img
-                                    className={styles.addButton}
-                                    src={addIcon}
-                                />
-                            </button>
-                        ) : (
-                            <button
-                                className={classNames(styles.addButtonWrapper, styles.addButtonWrapperCostume)}
-                                onClick={onNewCostumeClick}
-                            >
-                                <img
-                                    className={styles.addButton}
-                                    src={addIcon}
-                                />
-                            </button>
-                        )}
-                        <SpriteLibrary
-                            visible={spriteLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseSpriteLibrary}
-                        />
-                        <CostumeLibrary
-                            visible={costumeLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseCostumeLibrary}
-                        />
-                        <BackdropLibrary
-                            visible={backdropLibraryVisible}
-                            vm={vm}
-                            onRequestClose={onRequestCloseBackdropLibrary}
-                        />
-                    </Box>
-                </Box>
             </Box>
         );
     }

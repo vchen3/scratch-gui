@@ -19,7 +19,7 @@ const MenuBar = function MenuBar () {
                 />
             </div>
 
-            <span className={styles.title}>Animation Playtest Prototype</span>
+            <span className={styles.title}>Scratch Microworlds Prototype</span>
         </Box>
     );
 };
