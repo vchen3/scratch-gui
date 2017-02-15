@@ -1,5 +1,6 @@
 const isEqual = require('lodash.isequal');
 const omit = require('lodash.omit');
+const classNames = require('classnames');
 const React = require('react');
 
 const VM = require('scratch-vm');
@@ -10,6 +11,9 @@ const CostumeLibrary = require('../../containers/costume-library.jsx');
 const SpriteLibrary = require('../../containers/sprite-library.jsx');
 const SpriteSelectorComponent = require('../sprite-selector/sprite-selector.jsx');
 const StageSelector = require('../../containers/stage-selector.jsx');
+
+const styles = require('./target-pane.css');
+const addIcon = require('./icon--add.svg');
 
 /*
  * Pane that contains the sprite selector, sprite info, stage selector,
@@ -46,27 +50,73 @@ class TargetPane extends React.Component {
             ...componentProps
         } = this.props;
         return (
-            <Box {...componentProps}>
-                <Box
-                    alignContent="flex-start"
-                    alignItems="flex-start"
-                    grow={1}
-                    style={{overflowY: 'auto'}}
-                >
-                    <SpriteSelectorComponent
-                        grow={1}
-                        selectedId={editingTarget}
-                        shrink={0}
-                        sprites={sprites}
-                        width="100%"
-                        onSelectSprite={onSelectSprite}
-                    />
-                </Box>
-                <Box
-                    direction="column"
-                    shrink={0}
-                    width={72}
-                >
+            <Box
+                className={styles.targetPane}
+                {...componentProps}
+            >
+               
+                <SpriteSelectorComponent
+                    selectedId={editingTarget}
+                    sprites={sprites}
+                    onSelectSprite={onSelectSprite}
+                />
+                <Box className={styles.stageSelectorWrapper}>
+                    {stage.id && <StageSelector
+                        backdropCount={stage.costumeCount}
+                        id={stage.id}
+                        selected={stage.id === editingTarget}
+                        url={stage.costume.skin}
+                        onSelect={onSelectSprite}
+                    />}
+                    <Box>
+
+                        <button
+                            className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSprite)}
+                            onClick={onNewSpriteClick}
+                        >
+                            <img
+                                className={styles.addButton}
+                                src={addIcon}
+                            />
+                        </button>
+
+                        {editingTarget === stage.id ? (
+                            <button
+                                className={classNames(styles.addButtonWrapper, styles.addButtonWrapperStage)}
+                                onClick={onNewBackdropClick}
+                            >
+                                <img
+                                    className={styles.addButton}
+                                    src={addIcon}
+                                />
+                            </button>
+                        ) : (
+                            <button
+                                className={classNames(styles.addButtonWrapper, styles.addButtonWrapperCostume)}
+                                onClick={onNewCostumeClick}
+                            >
+                                <img
+                                    className={styles.addButton}
+                                    src={addIcon}
+                                />
+                            </button>
+                        )}
+                        <SpriteLibrary
+                            visible={spriteLibraryVisible}
+                            vm={vm}
+                            onRequestClose={onRequestCloseSpriteLibrary}
+                        />
+                        <CostumeLibrary
+                            visible={costumeLibraryVisible}
+                            vm={vm}
+                            onRequestClose={onRequestCloseCostumeLibrary}
+                        />
+                        <BackdropLibrary
+                            visible={backdropLibraryVisible}
+                            vm={vm}
+                            onRequestClose={onRequestCloseBackdropLibrary}
+                        />
+                    </Box>
                 </Box>
             </Box>
         );
