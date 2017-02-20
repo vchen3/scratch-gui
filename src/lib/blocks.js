@@ -22,9 +22,11 @@ module.exports = function (vm) {
     };
 
     const soundsMenu = function () {
-        return  (vm.editingTarget) ? vm.editingTarget.sprite.sounds.map(sound => [sound.name, sound.name])
-                                  // Default option, when creating blocks before sprites are loaded.
-                                  : ['select...', '0'];;
+    	const sounds = (vm.editingTarget) ? vm.editingTarget.sprite.sounds : [];
+            if (sounds.length === 0) {
+                return [['', '']];
+            }
+    	return sounds.map(sound => [sound.name, sound.name]);
     };
 
     const costumesMenu = function () {
