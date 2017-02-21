@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const {Provider} = require('react-redux');
 const {createStore} = require('redux');
+const ReactGA = require('react-ga');
 
 const GUI = require('./containers/gui.jsx');
 const log = require('./lib/log');
@@ -13,6 +14,7 @@ const styles = require('./index.css');
 class App extends React.Component {
     constructor (props) {
         super(props);
+        ReactGA.initialize('UA-92330139-1');
         this.fetchProjectId = this.fetchProjectId.bind(this);
         this.updateProject = this.updateProject.bind(this);
 
@@ -70,6 +72,8 @@ class App extends React.Component {
         return fromFile ? fromFile : 0;
     }
     updateProject () {
+        ReactGA.pageview(window.location.pathname + window.location.hash);
+        console.log('logged: ' + window.location.pathname + window.location.hash);
         const projectId = this.fetchProjectId();
         if (projectId !== this.state.projectId && projectId) {
             if (projectId.length < 1) {
@@ -93,6 +97,8 @@ class App extends React.Component {
     }
     // Function for uploading from a local file.
     updateProjectFromLoadButton (e) {
+        ReactGA.pageview(window.location.pathname + window.location.hash + "_load");
+        console.log('logged: ' + window.location.pathname + window.location.hash + "_load");
         this.fileLoader.readAsText(e.target.files[0]);
     }
     fileLoaderOnLoad() {

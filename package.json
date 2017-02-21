@@ -69,5 +69,8 @@
     "webpack-combine-loaders": "2.0.3",
     "webpack-dev-server": "2.3.0",
     "xhr": "2.3.3"
+  },
+  "dependencies": {
+    "react-ga": "^2.1.2"
   }
 }
