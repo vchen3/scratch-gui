@@ -17,6 +17,7 @@ class App extends React.Component {
         ReactGA.initialize('UA-92330139-1');
         this.fetchProjectId = this.fetchProjectId.bind(this);
         this.updateProject = this.updateProject.bind(this);
+        this.updateToDefaultToolbox = this.updateToDefaultToolbox.bind(this);
 
         // Update from file loading
         this.updateProjectFromLoadButton = this.updateProjectFromLoadButton.bind(this);
@@ -111,6 +112,12 @@ class App extends React.Component {
                    projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)})
       //TODO(morant): load blocks and editor type from file as well?
     }
+    updateToDefaultToolbox() {
+        this.setState({
+            blocks: "DEFAULT",
+            editorType: 3
+        })
+    }
     render () {
         return (
             <GUI
@@ -118,6 +125,7 @@ class App extends React.Component {
                 projectData={this.state.projectData}
                 editorType={this.state.editorType}
                 blocks={this.state.blocks}
+                updateToDefaultToolbox = {this.updateToDefaultToolbox}
             />
         );
     }
