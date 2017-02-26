@@ -36,7 +36,6 @@ const SpriteSelectorComponent = function (props) {
                         ))
                     }
                 </Box>
-            }
             </Box>}
         </Box>
     );
