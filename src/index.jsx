@@ -112,7 +112,7 @@ class App extends React.Component {
         return;
       }
       var projectBlocks = projectData.blocksPalette;
-      var projectEditorType = projectData.editorType;
+      var projectEditorType = parseInt(projectData.editorType);
       this.setState({projectId: this.fileLoader.name,
                      projectData: projectAllData ? projectAllData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
                     })

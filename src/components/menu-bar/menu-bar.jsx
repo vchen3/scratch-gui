@@ -10,6 +10,7 @@ const Load = require('../../containers/load.jsx');
 
 const MenuBar = function MenuBar (props) {
     const {
+        editorType,
         updateToDefaultToolbox,
         blocks,
         vm,
@@ -29,7 +30,8 @@ const MenuBar = function MenuBar (props) {
             </div>
             <Save className={styles.menuItem} 
                   vm={vm}
-                  blocks={blocks}>
+                  blocks={blocks}
+                  editorType={editorType}>
                 Save
             </Save>
             <Load className={styles.menuItem}></Load>

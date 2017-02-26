@@ -26,6 +26,10 @@ class Save extends React.Component {
             projectJson = projectJson.slice(0, -1) + ", \"blocksPalette\" : \"" + blocksString + "\"}"
         }
 
+        if (this.props.editorType) {
+            projectJson = projectJson.slice(0, -1) + ", \"editorType\" : \""+ this.props.editorType + "\"}"
+        }
+
         // Write names of UNIQUE blocks that are in the workspace for each target (stage or sprite)
         var workspaceBlocksStr = new Set();
         for (i in project.targets) {
@@ -66,6 +70,7 @@ class Save extends React.Component {
         const {
             vm, // eslint-disable-line no-unused-vars
             blocks, // eslint-disable-line no-unused-vars
+            editorType,
             ...props
         } = this.props;
         return (

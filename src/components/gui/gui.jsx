@@ -33,9 +33,10 @@ const GUIComponent = props => {
             className={styles.pageWrapper}
             {...componentProps}
         >
-            <MenuBar vm={vm} 
+            <MenuBar vm={vm}
                      blocks={blocks}
                      updateToDefaultToolbox={props.updateToDefaultToolbox}
+                     editorType={editorType}
                      />
             <Box className={styles.bodyWrapper}>
                 <Box className={styles.flexWrapper}>
