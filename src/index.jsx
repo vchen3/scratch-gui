@@ -85,7 +85,9 @@ class App extends React.Component {
                 var projectData = ProjectLoader.loadFromProjectsFile(projectId);
                 return this.setState({
                     projectId: projectId,
-                    projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
+                    projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
+                    blocks: ProjectLoader.loadBlocksFromFile(projectId),
+                    editorType: ProjectLoader.loadEditorTypeFromFile(projectId)
                 })
             }
             ProjectLoader.load(projectId, (err, body) => {
@@ -107,6 +109,7 @@ class App extends React.Component {
       console.log(projectData);
       this.setState({projectId: this.fileLoader.name,
                    projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)})
+      //TODO(morant): load blocks and editor type from file as well?
     }
     render () {
         return (

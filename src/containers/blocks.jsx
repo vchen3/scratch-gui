@@ -19,7 +19,8 @@ class Blocks extends React.Component {
             'onBlockGlowOff',
             'onVisualReport',
             'onWorkspaceUpdate',
-            'setBlocks'
+            'setBlocks',
+            'updateBlocks'
         ]);
     }
     componentDidMount () {
@@ -75,6 +76,11 @@ class Blocks extends React.Component {
         this.ScratchBlocks.Events.enable();
         this.workspace.toolbox_.refreshSelection();
     }
+    updateBlocks (tree, editorType) {
+        if (this.workspace) {
+            this.workspace.updateToolbox(tree, editorType);
+        }
+    }
     setBlocks (blocks) {
         this.blocks = blocks;
     }
@@ -84,6 +90,11 @@ class Blocks extends React.Component {
             vm, // eslint-disable-line no-unused-vars
             ...props
         } = this.props;
+
+        // Update toolbox
+        // TODO(morant): This should probably be called from somewhere else, and not in the render function.
+        this.updateBlocks(this.props.options.toolbox, this.props.options.editorType);
+
         return (
             <BlocksComponent
                 componentRef={this.setBlocks}
