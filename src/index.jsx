@@ -106,11 +106,21 @@ class App extends React.Component {
     }
     fileLoaderOnLoad() {
       console.log("in onload");
-      var projectData = this.fileLoader.result;
-      console.log(projectData);
+      var projectAllData = this.fileLoader.result;
+      var projectData = JSON.parse(projectAllData);
+      if (!projectData) {
+        return;
+      }
+      var projectBlocks = projectData.blocksPalette;
+      var projectEditorType = projectData.editorType;
       this.setState({projectId: this.fileLoader.name,
-                   projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)})
-      //TODO(morant): load blocks and editor type from file as well?
+                     projectData: projectAllData ? projectAllData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
+                    })
+      if (projectBlocks && projectEditorType) {
+        this.setState({blocks: projectBlocks,
+                       editorType: projectEditorType ? projectEditorType : 3
+                      })
+      }
     }
     updateToDefaultToolbox() {
         this.setState({
