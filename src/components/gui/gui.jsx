@@ -6,8 +6,6 @@ const GreenFlag = require('../../containers/green-flag.jsx');
 const TargetPane = require('../../containers/target-pane.jsx');
 const Stage = require('../../containers/stage.jsx');
 const StopAll = require('../../containers/stop-all.jsx');
-const Save = require('../../containers/save.jsx');
-const Load = require('../../containers/load.jsx');
 const MenuBar = require('../menu-bar/menu-bar.jsx');
 
 const Box = require('../box/box.jsx');
@@ -35,7 +33,7 @@ const GUIComponent = props => {
             className={styles.pageWrapper}
             {...componentProps}
         >
-            <MenuBar />
+            <MenuBar vm={vm} blocks={blocks}/>
             <Box className={styles.bodyWrapper}>
                 <Box className={styles.flexWrapper}>
                     <Box className={styles.blocksWrapper}>
@@ -54,8 +52,6 @@ const GUIComponent = props => {
                         <Box className={styles.stageMenuWrapper} >
                             <GreenFlag vm={vm} />
                             <StopAll vm={vm} />
-                            <Save vm={vm} blocks={blocks}/>
-                            <Load />
                         </Box>
                         <Box className={styles.stageWrapper} >
                             <Stage

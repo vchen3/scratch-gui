@@ -4,8 +4,16 @@ const React = require('react');
 const Box = require('../box/box.jsx');
 const styles = require('./menu-bar.css');
 const scratchLogo = require('./scratch-logo.svg');
+// const OpenScratch = require('../../containers/open-in-scratch.jsx');
+const Save = require('../../containers/save.jsx');
+const Load = require('../../containers/load.jsx');
 
-const MenuBar = function MenuBar () {
+const MenuBar = function MenuBar (props) {
+    const {
+        blocks,
+        vm,
+        ...componentProps
+    } = props;
     return (
         <Box
             className={classNames({
@@ -18,14 +26,9 @@ const MenuBar = function MenuBar () {
                     src={scratchLogo}
                 />
             </div>
-            <div className={styles.menuItem} >Animation Playtest Prototype</div>
-
-            {/*
-
-                <a className={styles.menuItem} href="#" >Load</a>
-                <a className={styles.menuItem} href="#" >Save</a>
-                <a className={styles.menuItem} href="#" >Open in Scratch</a>
-            */}
+            <Save className={styles.menuItem} vm={vm} blocks={blocks}>Save</Save>
+            <Load className={styles.menuItem}></Load>
+            <a className={styles.menuItem} href="#" >Open in Scratch</a>
         </Box>
     );
 };

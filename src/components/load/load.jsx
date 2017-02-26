@@ -1,27 +1,18 @@
 const classNames = require('classnames');
 const React = require('react');
 
-const loadIcon = require('./load.svg');
-const styles = require('./load.css');
-
 const LoadComponent = function (props) {
     const {
-        onClick,
-        title,
         ...componentProps
     } = props;
     return (
-        <input type="file" id="files" name="files" />
+        <label htmlFor="files"
+          {...componentProps}>
+            Load
+            <input type="file" id="files" name="files"
+                style={{width : '0.1px', height: '0.1px', opacity: 0,overflow: 'hidden',position: 'absolute',zindex:  -1}} />
+        </label>
     );
-};
-
-LoadComponent.propTypes = {
-    onClick: React.PropTypes.func,
-    title: React.PropTypes.string
-};
-
-LoadComponent.defaultProps = {
-    title: 'Load'
 };
 
 module.exports = LoadComponent;
