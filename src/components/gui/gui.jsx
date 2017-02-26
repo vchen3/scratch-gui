@@ -40,13 +40,13 @@ const GUIComponent = props => {
                 <Box className={styles.flexWrapper}>
                     <Box className={styles.blocksWrapper}>
                 <Blocks
-                            grow={1}
-                            options={{
+                    grow={1}
+                    options={{
                         media: `${basePath}static/blocks-media/`,
-                        showScaffoldingCategories: editorType,
+                        editorType: editorType,
                         toolbox: blocks
-                            }}
-                            vm={vm}
+                    }}
+                    vm={vm}
                         />
                     </Box>
 
@@ -57,7 +57,6 @@ const GUIComponent = props => {
                             <Save vm={vm} blocks={blocks}/>
                             <Load />
                         </Box>
-                        
                         <Box className={styles.stageWrapper} >
                             <Stage
                                 shrink={0}

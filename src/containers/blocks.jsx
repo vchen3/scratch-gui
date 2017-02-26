@@ -95,7 +95,7 @@ class Blocks extends React.Component {
 
 Blocks.propTypes = {
     options: React.PropTypes.shape({
-        showScaffoldingCategories: React.PropTypes.number,
+        editorType: React.PropTypes.number,
         toolbox: React.PropTypes.string,
         media: React.PropTypes.string,
         zoom: React.PropTypes.shape({
