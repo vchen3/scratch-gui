@@ -42,8 +42,8 @@ module.exports = function (vm) {
     };
 
     const spriteMenu = function () {
-        var sprites = [];
-        for (var targetId in vm.runtime.targets) {
+        const sprites = [];
+        for (const targetId in vm.runtime.targets) {
             if (!vm.runtime.targets.hasOwnProperty(targetId)) continue;
             if (vm.runtime.targets[targetId].isOriginal) {
                 if (!vm.runtime.targets[targetId].isStage) {
