@@ -29,7 +29,7 @@ const SpriteSelectorComponent = function (props) {
             className={styles.spriteSelector}
             {...componentProps}
         >
-            <SpriteInfo name="Sprite" />
+            <SpriteInfo name="Sprite"
                 disabled={spriteInfoDisabled}
                 draggable={selectedSprite.draggable}
                 name={selectedSprite.name}
