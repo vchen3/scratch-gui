@@ -34,6 +34,7 @@ const MenuBar = function MenuBar (props) {
                   editorType={editorType}>
                 Save
             </Save>
+            <Load className={styles.menuItem}></Load>
             <OpenInScratch className={styles.menuItem}
                            vm={vm}
                            blocks={blocks}

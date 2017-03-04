@@ -44,8 +44,7 @@ const SpriteSelectorComponent = function (props) {
                 onChangeX={onChangeSpriteX}
                 onChangeY={onChangeSpriteY}
             />
-            { (Object.keys(sprites).length > 1) &&
-                <Box className={styles.scrollWrapper}>
+            <Box className={styles.scrollWrapper}>
                 <Box className={styles.itemsWrapper}>
                     {Object.keys(sprites)
                         // Re-order by list order
@@ -63,7 +62,7 @@ const SpriteSelectorComponent = function (props) {
                         ))
                     }
                 </Box>
-            </Box>}
+            </Box>
         </Box>
     );
 };
