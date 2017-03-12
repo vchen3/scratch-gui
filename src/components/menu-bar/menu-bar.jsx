@@ -8,6 +8,8 @@ const OpenInScratch = require('../../containers/open-in-scratch.jsx');
 const Save = require('../../containers/save.jsx');
 const Load = require('../../containers/load.jsx');
 
+const homepageHref = "http://microworlds.media.mit.edu:8333/microworlds/new";
+
 const MenuBar = function MenuBar (props) {
     const {
         editorType,
@@ -22,12 +24,12 @@ const MenuBar = function MenuBar (props) {
                 [styles.menuBar]: true
             })}
         >
-            <div className={classNames(styles.logoWrapper, styles.menuItem)}>
+            <a className={classNames(styles.logoWrapper, styles.menuItem)} href={homepageHref}>
                 <img
                     className={classNames(styles.scratchLogo)}
                     src={scratchLogo}
                 />
-            </div>
+            </a>
             <Save className={styles.menuItem} 
                   vm={vm}
                   blocks={blocks}
