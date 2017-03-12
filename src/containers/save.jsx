@@ -5,15 +5,15 @@ const VM = require('scratch-vm');
 const SaveComponent = require('../components/save/save.jsx');
 const Blocks = require('./blocks.jsx');
 
-//TODO(morant): find a way to turn on/off from browser/href
-const autoSaveIntervalSec = null; //30
+const autoSaveIntervalSec = 30;
 
 class Save extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
             'handleClick',
-            'saveToFile'
+            'saveToFile',
+            'toggleAutoSave'
         ]);
     }
     handleClick (e) {
@@ -74,6 +74,21 @@ class Save extends React.Component {
 
         document.body.removeChild(saveLink);
     }
+    toggleAutoSave() {
+        // Checked is true by deafault
+        var checked = document.getElementById("autosaveCheckbox") ? 
+            document.getElementById("autosaveCheckbox").checked : true;
+        if (checked) {
+            if (autoSaveIntervalSec && !this.saveIntervalId) {
+                console.log("Starting auto save");
+                this.saveIntervalId =setInterval(this.saveToFile, autoSaveIntervalSec*1000);
+            }
+        } else if (this.saveIntervalId) {
+            console.log("Ending auto save");
+            clearInterval(this.saveIntervalId);
+            this.saveIntervalId = null;
+        }
+    }
     render () {
         const {
             vm, // eslint-disable-line no-unused-vars
@@ -81,12 +96,11 @@ class Save extends React.Component {
             editorType,
             ...props
         } = this.props;
-        if (autoSaveIntervalSec && !this.saveIntervalId) {
-            this.saveIntervalId =setInterval(this.saveToFile, autoSaveIntervalSec*1000);
-        }
+        this.toggleAutoSave();
         return (
             <SaveComponent
                 onClick={this.handleClick}
+                onChangeCheckbox={this.toggleAutoSave}
                 {...props}
             />
         );
