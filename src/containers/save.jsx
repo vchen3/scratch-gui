@@ -4,17 +4,23 @@ const VM = require('scratch-vm');
 
 const SaveComponent = require('../components/save/save.jsx');
 const Blocks = require('./blocks.jsx');
-const date = new Date();
+
+//TODO(morant): find a way to turn on/off from browser/href
+const autoSaveIntervalSec = null; //30
 
 class Save extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleClick'
+            'handleClick',
+            'saveToFile'
         ]);
     }
     handleClick (e) {
         e.preventDefault();
+        this.saveToFile(false);
+    }
+    saveToFile(isAutoSave = true) {
         var projectJson = this.props.vm.saveProjectSb3();
 
         var project = JSON.parse(projectJson);
@@ -59,7 +65,9 @@ class Save extends React.Component {
         var url = window.URL.createObjectURL(data);
         saveLink.href = url;
         // File name: project-DATE-TIME
-        saveLink.download = "project-" + date.toLocaleDateString() + 
+        var date = new Date();
+        var filenameinit = isAutoSave ? "auto-" : "project-";
+        saveLink.download = filenameinit + date.toLocaleDateString() +
                             "-"+ date.toLocaleTimeString() +".json";
         saveLink.click();
         window.URL.revokeObjectURL(url);
@@ -73,6 +81,9 @@ class Save extends React.Component {
             editorType,
             ...props
         } = this.props;
+        if (autoSaveIntervalSec && !this.saveIntervalId) {
+            this.saveIntervalId =setInterval(this.saveToFile, autoSaveIntervalSec*1000);
+        }
         return (
             <SaveComponent
                 onClick={this.handleClick}
