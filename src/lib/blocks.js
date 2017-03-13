@@ -26,19 +26,32 @@ module.exports = function (vm) {
             if (sounds.length === 0) {
                 return [['', '']];
             }
-    	return sounds.map(sound => [sound.name, sound.name]);
+    	var menu = sounds.map(sound => [sound.name, sound.name]);
+        return menu;
     };
 
     const costumesMenu = function () {
-        return (vm.editingTarget) ? vm.editingTarget.sprite.costumes.map(costume => [costume.name, costume.name])
+        var menu = (vm.editingTarget) ? vm.editingTarget.sprite.costumes.map(costume => [costume.name, costume.name])
                                   // Default option, when creating blocks before sprites are loaded.
-                                  : ['select...', '0'];;
+                                  : ['select...', '0'];
+        changeDefault(menu);
+        return menu;
     };
 
+    const changeDefault = function (menu) {
+        if (menu && menu.length > 1) {
+            var first = menu[0]
+            menu[0] = menu[menu.length - 1];
+            menu[menu.length - 1] = first;
+        }
+    }
+
     const backdropsMenu = function () {
-        return (vm.runtime && vm.runtime.targets[0]) ? vm.runtime.targets[0].sprite.costumes.map(costume => [costume.name, costume.name])
+        var menu =  (vm.runtime && vm.runtime.targets[0]) ? vm.runtime.targets[0].sprite.costumes.map(costume => [costume.name, costume.name])
                                                      // Default option, when creating blocks before sprites are loaded.
-                                                     : ['select...', '0'];;
+                                                     : ['select...', '0'];
+        changeDefault(menu);
+        return menu;
     };
 
     const spriteMenu = function () {
