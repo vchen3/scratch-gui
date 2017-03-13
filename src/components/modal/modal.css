@@ -1,3 +1,6 @@
+@import "../../css/colors.css";
+@import "../../css/units.css";
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -14,13 +17,12 @@
     overflow-y: scroll;
     -webkit-overflow-scrolling: 'touch';
     border: 1px solid #ccc;
-    border-radius: 6px;
     padding: 0;
     top: 5%;
     right: 5%;
     bottom: 5%;
     left: 5%;
-    background: #fcfcfc;
+    border-radius: $space;
 }
 
 .modal-children {
@@ -28,40 +30,12 @@
     height: 100%;
     z-index: 0;
     padding: 2rem;
+    background: $ui-pane-gray;
 }
 
-.modal-close-button {
-    display: flex;
+.close-button {
     position: absolute;
-    z-index: 2147483647;
-    align-items: center;
-    justify-content: center;
-
-    top: 2rem;
-    right: 2rem;
-    width: 2.75rem !important;
-    height: 2.75rem !important;
-
-    color: gray;
-    background-color: #cbcbcb;
-
-    border-radius: 50% !important;
-    border: 2px solid #dbdbdb;
-
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    cursor: pointer;
-    transition: all 0.15s ease-out; /* standardize with var */ 
-}
-
-.modal-close-button:hover {
-    transform: scale(1.1, 1.1);
-}
-
-/*  Same icon as Sprite Selector Add button, but rotated.
-    TODO: reuse? 
-*/
-.close-icon {
-    transform-origin: 50%;
-    transform: rotate(45deg);
-    width: 40%;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
 }

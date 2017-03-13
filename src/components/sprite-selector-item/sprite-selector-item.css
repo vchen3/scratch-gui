@@ -1,10 +1,12 @@
 @import "../../css/units.css";
 
-/* TODO: refactor this class name, and component: `sprite-selector` to `sprite` */
+/* @todo: refactor this class name, and component: `sprite-selector` to `sprite` */
 .sprite-selector-item {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    position: relative;
+
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.8rem;
     background: white;
@@ -23,14 +25,14 @@
     transition: 0.25s ease-out;
 }
 
-/* TODO: refactor out descendent selectors into regular classes */
+/* @todo: refactor out descendent selectors into regular classes */
 .sprite-selector-item.is-selected {
     border-width: 2px;
     border-color: #1dacf4;
     transition: 0.25s ease-out;
 }
 .sprite-selector-item.is-selected .info-button {
-    display: block; 
+    display: block;
 }
 
 .sprite-image {
@@ -40,12 +42,19 @@
 .sprite-name {
     font-size: 0.625rem;
     margin: 0.15rem;
-    /* 
+    /*
         For truncating overflowing text gracefully
         Min-width is for a bug: https://css-tricks.com/flexbox-truncated-text
     */
-    overflow: hidden;  
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     min-width: 0;
+}
+
+.delete-button {
+    position: absolute;
+    top: 0.125rem;
+    right: 0.125rem;
+    z-index: 2;
 }

@@ -2,7 +2,9 @@
     width: 1.6rem;
     height: 1.6rem;
     opacity: 0.5;
-    transition: opacity 0.2s ease-out; /* TODO: standardize with var */ 
+    user-select: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease-out; /* @todo: standardize with var */ 
 }
 
 .stop-all.is-active,

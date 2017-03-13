@@ -13,6 +13,7 @@ const SpriteSelectorComponent = function (props) {
         onChangeSpriteVisibility,
         onChangeSpriteX,
         onChangeSpriteY,
+        onDeleteSprite,
         onSelectSprite,
         selectedId,
         sprites,
@@ -58,6 +59,7 @@ const SpriteSelectorComponent = function (props) {
                                 name={sprites[id].name}
                                 selected={id === selectedId}
                                 onClick={onSelectSprite}
+                                onDeleteButtonClick={onDeleteSprite}
                             />
                         ))
                     }
@@ -74,6 +76,7 @@ SpriteSelectorComponent.propTypes = {
     onChangeSpriteVisibility: React.PropTypes.func,
     onChangeSpriteX: React.PropTypes.func,
     onChangeSpriteY: React.PropTypes.func,
+    onDeleteSprite: React.PropTypes.func,
     onSelectSprite: React.PropTypes.func,
     selectedId: React.PropTypes.string,
     sprites: React.PropTypes.shape({

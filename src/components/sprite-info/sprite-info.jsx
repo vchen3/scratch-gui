@@ -8,8 +8,8 @@ const xIcon = require('./icon--x.svg');
 const yIcon = require('./icon--y.svg');
 const showIcon = require('./icon--show.svg');
 const hideIcon = require('./icon--hide.svg');
-const draggableIcon = require('./icon--draggable.svg');
-const notDraggableIcon = require('./icon--not-draggable.svg');
+const draggableIcon = require('./icon--draggable-on.svg');
+const notDraggableIcon = require('./icon--draggable-off.svg');
 
 const ROTATION_STYLES = ['left-right', 'don\'t rotate', 'all around'];
 
@@ -30,48 +30,61 @@ class SpriteInfo extends React.Component {
             <Box
                 className={styles.spriteInfo}
             >
-                <div className={styles.row}>
+                <div className={classNames(styles.row, styles.rowPrimary)}>
                     <div className={styles.group}>
                         <span className={styles.inputLabel}>Sprite</span>
                         <input
                             className={classNames(styles.inputForm, styles.inputFormSpriteName)}
                             disabled={this.props.disabled}
                             placeholder="Name"
+                            tabIndex="1"
                             type="text"
                             value={this.props.disabled ? '' : this.props.name}
+                            onBlur={this.props.onBlurName}
                             onChange={this.props.onChangeName}
+                            onKeyPress={this.props.onKeyPress}
                         />
                     </div>
 
                     <div className={styles.group}>
-                        <img
-                            className={classNames(styles.xIcon, styles.icon)}
-                            src={xIcon}
-                        />
+                        <div className={styles.iconWrapper}>
+                            <img
+                                className={classNames(styles.xIcon, styles.icon)}
+                                src={xIcon}
+                            />
+                        </div>
                         <span className={styles.inputLabel}>x</span>
                         <input
                             className={classNames(styles.inputForm, styles.inputFormX)}
                             disabled={this.props.disabled}
                             placeholder="x"
+                            tabIndex="2"
                             type="text"
                             value={this.props.disabled ? '' : this.props.x}
+                            onBlur={this.props.onBlurX}
                             onChange={this.props.onChangeX}
+                            onKeyPress={this.props.onKeyPress}
                         />
                     </div>
 
                     <div className={styles.group}>
-                        <img
-                            className={classNames(styles.yIcon, styles.icon)}
-                            src={yIcon}
-                        />
+                        <div className={styles.iconWrapper}>
+                            <img
+                                className={classNames(styles.yIcon, styles.icon)}
+                                src={yIcon}
+                            />
+                        </div>
                         <span className={styles.inputLabel}>y</span>
                         <input
                             className={classNames(styles.inputForm, styles.inputFormY)}
                             disabled={this.props.disabled}
                             placeholder="y"
+                            tabIndex="3"
                             type="text"
                             value={this.props.disabled ? '' : this.props.y}
+                            onBlur={this.props.onBlurY}
                             onChange={this.props.onChangeY}
+                            onKeyPress={this.props.onKeyPress}
                         />
                     </div>
                 </div>
@@ -84,6 +97,9 @@ SpriteInfo.propTypes = {
     disabled: React.PropTypes.bool,
     draggable: React.PropTypes.bool,
     name: React.PropTypes.string,
+    onBlurName: React.PropTypes.func,
+    onBlurX: React.PropTypes.func,
+    onBlurY: React.PropTypes.func,
     onChangeName: React.PropTypes.func,
     onChangeRotationStyle: React.PropTypes.func,
     onChangeX: React.PropTypes.func,
@@ -92,10 +108,11 @@ SpriteInfo.propTypes = {
     onClickNotDraggable: React.PropTypes.func,
     onClickNotVisible: React.PropTypes.func,
     onClickVisible: React.PropTypes.func,
+    onKeyPress: React.PropTypes.func,
     rotationStyle: React.PropTypes.oneOf(ROTATION_STYLES),
     visible: React.PropTypes.bool,
-    x: React.PropTypes.number,
-    y: React.PropTypes.number
+    x: React.PropTypes.string,
+    y: React.PropTypes.string
 };
 
 module.exports = SpriteInfo;
