@@ -2,8 +2,8 @@
 
 .autosaveCheckbox {
     position: absolute;
-    bottom: 5px;
-    right: 15px;
+    bottom: -3px;
+    right: -3px;
     z-index: 1;
 }
 

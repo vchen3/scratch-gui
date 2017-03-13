@@ -70,6 +70,7 @@ const GUIComponent = props => {
                         <Box className={styles.targetWrapper} >
                             <TargetPane
                                 vm={vm}
+                                editorType={editorType}
                             />
                         </Box>
                     </Box>

@@ -46,6 +46,6 @@
 }
 
 /* TODO: This is hacky. Better: move buttons in their corresponding panes, and set values relatively */
-.add-button-wrapper--sprite   { right: 7rem; }
+.add-button-wrapper--sprite   { right: 3rem; }
 .add-button-wrapper--stage    { right: 1.6rem; }
 .add-button-wrapper--costume  { right: 1.6rem; }

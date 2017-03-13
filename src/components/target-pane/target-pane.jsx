@@ -52,14 +52,37 @@ class TargetPane extends React.Component {
             stage,
             sprites,
             vm,
+            editorType,
             ...componentProps
         } = this.props;
+        // Only create button and sprite library if "open in Scratch" is clicked, or if it's a default project
+        // (Don't show in the microworlds case).
+        var addNewButton, addNewLibrary = null;
+        if (this.props.editorType >=3 || !this.props.editorType) {
+            addNewButton = (
+                 <button
+                    className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSprite)}
+                    onClick={onNewSpriteClick}
+                >
+                    <img
+                        className={styles.addButton}
+                        src={addIcon}
+                    />
+                </button>
+            )
+            addNewLibrary = (
+                <SpriteLibrary
+                    visible={spriteLibraryVisible}
+                    vm={vm}
+                    onRequestClose={onRequestCloseSpriteLibrary}
+                />
+            )
+        }
         return (
             <Box
                 className={styles.targetPane}
                 {...componentProps}
             >
-               
                 <SpriteSelectorComponent
                     selectedId={editingTarget}
                     sprites={sprites}
@@ -71,6 +94,8 @@ class TargetPane extends React.Component {
                     onChangeSpriteY={onChangeSpriteY}
                     onSelectSprite={onSelectSprite}
                 />
+               {addNewButton}
+               {addNewLibrary}
             </Box>
         );
     }
