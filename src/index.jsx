@@ -1,3 +1,4 @@
+const bindAll = require('lodash.bindall');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const {Provider} = require('react-redux');
@@ -16,12 +17,14 @@ class App extends React.Component {
     constructor (props) {
         super(props);
         ReactGA.initialize('UA-92330139-1');
-        this.fetchProjectId = this.fetchProjectId.bind(this);
-        this.updateProject = this.updateProject.bind(this);
-        this.updateToDefaultToolbox = this.updateToDefaultToolbox.bind(this);
+        bindAll(this, [
+            'fetchProjectId',
+            'updateProject',
+            'updateToDefaultToolbox',
+            'updateProjectFromLoadButton',
+            'returnToMicroworld'
+        ]);
 
-        // Update from file loading
-        this.updateProjectFromLoadButton = this.updateProjectFromLoadButton.bind(this);
         this.fileLoader = new FileReader();
         this.fileLoader.onload = this.fileLoaderOnLoad.bind(this);
         this.fileInputField = null;
@@ -85,11 +88,16 @@ class App extends React.Component {
                 });
             } else if (isNaN(projectId)) {
                 var projectData = ProjectLoader.loadFromProjectsFile(projectId);
+                var projectBlocks = ProjectLoader.loadBlocksFromFile(projectId);
+                var editorType = ProjectLoader.loadEditorTypeFromFile(projectId);
+
                 return this.setState({
                     projectId: projectId,
                     projectData: projectData ? projectData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
-                    blocks: ProjectLoader.loadBlocksFromFile(projectId),
-                    editorType: ProjectLoader.loadEditorTypeFromFile(projectId)
+                    blocks: projectBlocks,
+                    editorType: editorType,
+                    lastMicroworldBlocks: (projectBlocks) ? projectBlocks : this.state.lastMicroworldBlocks,
+                    lastMicroworldEditorType: (editorType) ? editorType : thiis.state.lastMicroworldEditorType
                 })
             }
             ProjectLoader.load(projectId, (err, body) => {
@@ -119,7 +127,9 @@ class App extends React.Component {
                     })
       if (projectBlocks && projectEditorType) {
         this.setState({blocks: projectBlocks,
-                       editorType: projectEditorType ? projectEditorType : 3
+                       editorType: projectEditorType,
+                       lastMicroworldBlocks: projectBlocks,
+                       lastMicroworldEditorType: projectEditorType
                       })
       }
     }
@@ -127,6 +137,12 @@ class App extends React.Component {
         this.setState({
             blocks: "DEFAULT",
             editorType: 3
+        })
+    }
+    returnToMicroworld() {
+        this.setState({
+            blocks: (this.state.lastMicroworldBlocks) ? this.state.lastMicroworldBlocks : this.state.blocks,
+            editorType: (this.state.lastMicroworldEditorType) ? this.state.lastMicroworldEditorType : this.state.editorType
         })
     }
     render () {
@@ -137,6 +153,7 @@ class App extends React.Component {
                 editorType={this.state.editorType}
                 blocks={this.state.blocks}
                 updateToDefaultToolbox = {this.updateToDefaultToolbox}
+                returnToMicroworld = {this.returnToMicroworld}
             />
         );
     }

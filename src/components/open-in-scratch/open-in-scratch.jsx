@@ -3,6 +3,7 @@ const React = require('react');
 
 const OpenInScratchComponent = function (props) {
     const {
+        title,
         onClick,
         ...componentProps
     } = props;
@@ -10,11 +11,14 @@ const OpenInScratchComponent = function (props) {
         <a
           onClick={onClick}
           {...componentProps}
-        />
+        >
+            {title}
+        </a>
     );
 };
 
 OpenInScratchComponent.propTypes = {
+    title: React.PropTypes.string,
     onClick: React.PropTypes.func
 };
 

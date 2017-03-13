@@ -14,6 +14,8 @@ const styles = require('./gui.css');
 
 const GUIComponent = props => {
     const {
+        updateToDefaultToolbox,
+        returnToMicroworld,
         basePath,
         children,
         vm,
@@ -36,6 +38,7 @@ const GUIComponent = props => {
             <MenuBar vm={vm}
                      blocks={blocks}
                      updateToDefaultToolbox={props.updateToDefaultToolbox}
+                     returnToMicroworld={props.returnToMicroworld}
                      editorType={editorType}
                      />
             <Box className={styles.bodyWrapper}>

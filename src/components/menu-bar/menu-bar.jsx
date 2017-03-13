@@ -14,6 +14,7 @@ const MenuBar = function MenuBar (props) {
     const {
         editorType,
         updateToDefaultToolbox,
+        returnToMicroworld,
         blocks,
         vm,
         ...componentProps
@@ -40,8 +41,9 @@ const MenuBar = function MenuBar (props) {
             <OpenInScratch className={styles.menuItem}
                            vm={vm}
                            blocks={blocks}
-                           updateToDefaultToolbox={updateToDefaultToolbox}>
-                Open in Scratch
+                           editorType={editorType}
+                           updateToDefaultToolbox={updateToDefaultToolbox}
+                           returnToMicroworld={returnToMicroworld}>
             </OpenInScratch>
         </Box>
     );
