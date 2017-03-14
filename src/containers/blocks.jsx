@@ -45,7 +45,7 @@ class Blocks extends React.Component {
         this.attachVM();
     }
     shouldComponentUpdate () {
-        return false;
+        return true;
     }
     componentWillUnmount () {
         this.detachVM();
