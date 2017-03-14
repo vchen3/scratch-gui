@@ -61,7 +61,7 @@ class TargetPane extends React.Component {
         var addNewButton, addNewLibrary = null;
         if (this.props.editorType >=3 || !this.props.editorType) {
             addNewButton = (
-                 <button
+                <button
                     className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSprite)}
                     onClick={onNewSpriteClick}
                 >

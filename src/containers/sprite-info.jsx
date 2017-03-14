@@ -109,8 +109,8 @@ SpriteInfo.propTypes = {
     onChangeVisibility: React.PropTypes.func,
     onChangeX: React.PropTypes.func,
     onChangeY: React.PropTypes.func,
-    x: React.PropTypes.number,
-    y: React.PropTypes.number
+    x: React.PropTypes.string,
+    y: React.PropTypes.string
 };
 
 module.exports = SpriteInfo;

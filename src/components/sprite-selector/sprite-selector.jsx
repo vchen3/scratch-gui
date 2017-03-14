@@ -30,14 +30,14 @@ const SpriteSelectorComponent = function (props) {
             className={styles.spriteSelector}
             {...componentProps}
         >
-            <SpriteInfo name="Sprite"
+            <SpriteInfo
                 disabled={spriteInfoDisabled}
                 draggable={selectedSprite.draggable}
                 name={selectedSprite.name}
                 rotationStyle={selectedSprite.rotationStyle}
                 visible={selectedSprite.visible}
-                x={selectedSprite.x}
-                y={selectedSprite.y}
+                x={selectedSprite.x + ''}
+                y={selectedSprite.y + ''}
                 onChangeDraggability={onChangeSpriteDraggability}
                 onChangeName={onChangeSpriteName}
                 onChangeRotationStyle={onChangeSpriteRotationStyle}
