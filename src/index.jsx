@@ -85,6 +85,8 @@ class App extends React.Component {
                 return this.setState({
                     projectId: projectId,
                     projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
+                    blocks: "DEFAULT",
+                    editorType: 0
                 });
             } else if (isNaN(projectId)) {
                 var projectData = ProjectLoader.loadFromProjectsFile(projectId);
@@ -124,6 +126,8 @@ class App extends React.Component {
       var projectEditorType = parseInt(projectData.editorType);
       this.setState({projectId: this.fileLoader.name,
                      projectData: projectAllData ? projectAllData : JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
+                     blocks: "DEFAULT",
+                     editorType: 0
                     })
       if (projectBlocks && projectEditorType) {
         this.setState({blocks: projectBlocks,
