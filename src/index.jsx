@@ -84,7 +84,7 @@ class App extends React.Component {
             if (projectId.length < 1) {
                 return this.setState({
                     projectId: projectId,
-                    projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA)
+                    projectData: JSON.stringify(ProjectLoader.DEFAULT_PROJECT_DATA),
                     blocks: "DEFAULT",
                     editorType: 0
                 });
