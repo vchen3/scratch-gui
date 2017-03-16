@@ -44,8 +44,16 @@ class Blocks extends React.Component {
 
         this.attachVM();
     }
-    shouldComponentUpdate () {
-        return true;
+    shouldComponentUpdate (nextProps, nextState) {
+        if (!(this.props && this.props.options && nextProps && nextProps.options)) {
+            return false;
+        } else  {
+            if (this.props.options.toolbox !== nextProps.options.toolbox) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
     componentWillUnmount () {
         this.detachVM();
@@ -138,7 +146,9 @@ class Blocks extends React.Component {
 
         // Update toolbox
         // TODO(morant): This should probably be called from somewhere else, and not in the render function.
-        this.updateBlocks(this.props.options.toolbox, this.props.options.editorType);
+        if (this.props.options.toolbox) {
+            this.updateBlocks(this.props.options.toolbox, this.props.options.editorType);
+        }
 
         return (
             <BlocksComponent
