@@ -31,6 +31,7 @@ class TargetPane extends React.Component {
             !isEqual(this.props.sprites, nextProps.sprites)
         );
     }
+
     render () {
         const {
             editingTarget,
@@ -56,6 +57,13 @@ class TargetPane extends React.Component {
             editorType,
             ...componentProps
         } = this.props;
+
+        var addRandomSprite = function addRandomSprite(){
+            var EJSON = "{\"objName\": \"E-block\",\"sounds\": [{\"soundName\": \"gong\",\"soundID\": 2,\"md5\": \"6af567714db37721a11c55d2a2648aec.wav\",\"sampleCount\": 46848,\"rate\": 11025,\"format\": \"\"},{\"soundName\": \"funky loop\",\"soundID\": 13,\"md5\": \"fb56022366d21b299cbc3fd5e16000c2.wav\",\"sampleCount\": 44748,\"rate\": 22050,\"format\": \"adpcm\"}],\"costumes\": [{\"costumeName\": \"e-block\",\"baseLayerID\": -1,\"baseLayerMD5\": \"16c6257316ff94cc7539ccdfc24e5fb8.svg\",\"bitmapResolution\": 1,\"rotationCenterX\": 25,\"rotationCenterY\": 39}],\"currentCostumeIndex\": 0,\"scratchX\": 0,\"scratchY\": 0,\"scale\": 1,\"direction\": 90,\"rotationStyle\": \"normal\",\"isDraggable\": false,\"indexInLibrary\": 100000,\"visible\": true,\"spriteInfo\": {}}"
+
+            vm.addSprite2(JSON.parse(EJSON))
+        };
+
         // Only create button and sprite library if "open in Scratch" is clicked, or if it's a default project
         // (Don't show in the microworlds case).
         var addNewButton, addNewLibrary = null;
@@ -63,7 +71,7 @@ class TargetPane extends React.Component {
             addNewButton = (
                 <button
                     className={classNames(styles.addButtonWrapper, styles.addButtonWrapperSprite)}
-                    onClick={onNewSpriteClick}
+                    onClick={addRandomSprite}
                 >
                     <img
                         className={styles.addButton}

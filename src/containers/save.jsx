@@ -5,7 +5,7 @@ const VM = require('scratch-vm');
 const SaveComponent = require('../components/save/save.jsx');
 const Blocks = require('./blocks.jsx');
 
-const autoSaveIntervalSec = 30;
+const autoSaveIntervalSec = 0;
 
 class Save extends React.Component {
     constructor (props) {

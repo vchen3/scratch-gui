@@ -58,6 +58,7 @@ const GUIComponent = props => {
                     <Box className={styles.stageAndTargetWrapper} >
                         <Box className={styles.stageMenuWrapper} >
                             <GreenFlag vm={vm} />
+                            <GreenFlag vm={vm} />
                             <StopAll vm={vm} />
                         </Box>
                         <Box className={styles.stageWrapper} >
@@ -68,9 +69,7 @@ const GUIComponent = props => {
                         </Box>
 
                         <Box className={styles.targetWrapper} >
-                            <TargetPane
-                                vm={vm}
-                                editorType={editorType}
+                            <TargetPane vm={vm} editorType={editorType}
                             />
                         </Box>
                     </Box>

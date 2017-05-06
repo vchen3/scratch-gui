@@ -14,6 +14,8 @@ class SpriteLibrary extends React.Component {
         ]);
     }
     handleItemSelect (item) {
+        console.log("*item*")
+        console.log(item)
         this.props.vm.addSprite2(item.json);
     }
     render () {
