@@ -12,6 +12,8 @@ const SpriteLibrary = require('../../containers/sprite-library.jsx');
 const SpriteSelectorComponent = require('../sprite-selector/sprite-selector.jsx');
 const StageSelector = require('../../containers/stage-selector.jsx');
 
+const mySpriteLibraryContent = require('../../lib/libraries/sprites.json');
+
 const styles = require('./target-pane.css');
 const addIcon = require('./icon--add.svg');
 
@@ -59,9 +61,12 @@ class TargetPane extends React.Component {
         } = this.props;
 
         var addRandomSprite = function addRandomSprite(){
-            var EJSON = "{\"objName\": \"E-block\",\"sounds\": [{\"soundName\": \"gong\",\"soundID\": 2,\"md5\": \"6af567714db37721a11c55d2a2648aec.wav\",\"sampleCount\": 46848,\"rate\": 11025,\"format\": \"\"},{\"soundName\": \"funky loop\",\"soundID\": 13,\"md5\": \"fb56022366d21b299cbc3fd5e16000c2.wav\",\"sampleCount\": 44748,\"rate\": 22050,\"format\": \"adpcm\"}],\"costumes\": [{\"costumeName\": \"e-block\",\"baseLayerID\": -1,\"baseLayerMD5\": \"16c6257316ff94cc7539ccdfc24e5fb8.svg\",\"bitmapResolution\": 1,\"rotationCenterX\": 25,\"rotationCenterY\": 39}],\"currentCostumeIndex\": 0,\"scratchX\": 0,\"scratchY\": 0,\"scale\": 1,\"direction\": 90,\"rotationStyle\": \"normal\",\"isDraggable\": false,\"indexInLibrary\": 100000,\"visible\": true,\"spriteInfo\": {}}"
+            //Get random sprite
+            var librarySize = mySpriteLibraryContent.length
+            var spriteInt = Math.floor(Math.random() * librarySize)
+            var randomSprite = mySpriteLibraryContent[spriteInt]
+            vm.addSprite2(randomSprite.json)
 
-            vm.addSprite2(JSON.parse(EJSON))
         };
 
         // Only create button and sprite library if "open in Scratch" is clicked, or if it's a default project
