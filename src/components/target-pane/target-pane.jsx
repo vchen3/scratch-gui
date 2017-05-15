@@ -12,6 +12,7 @@ const SpriteLibrary = require('../../containers/sprite-library.jsx');
 const SpriteSelectorComponent = require('../sprite-selector/sprite-selector.jsx');
 const StageSelector = require('../../containers/stage-selector.jsx');
 
+// Imports edited sprite library
 const mySpriteLibraryContent = require('../../lib/libraries/sprites.json');
 
 const styles = require('./target-pane.css');
@@ -60,11 +61,13 @@ class TargetPane extends React.Component {
             ...componentProps
         } = this.props;
 
+        // Function to add a random sprite
         var addRandomSprite = function addRandomSprite(){
             //Get random sprite
             var librarySize = mySpriteLibraryContent.length
             var spriteInt = Math.floor(Math.random() * librarySize)
             var randomSprite = mySpriteLibraryContent[spriteInt]
+            // Add new sprite to screen
             vm.addSprite2(randomSprite.json)
 
         };
